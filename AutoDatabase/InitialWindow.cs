@@ -14,27 +14,33 @@ namespace AutoDatabase
 {
     public partial class InitialWindow : Form
     {
-        public static string ImagesPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagesForDiscounts");
-        private List<Discount> discountsList = new List<Discount>()
-        { 
-            //new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))) 
-            new Discount() { Title = "Nuolaida padangoms!",
-                             Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
-                             Code = "padangos147852",
-                             ExpirationDate = new DateTime(),
-                             LimitedUse = false,
-                             Percentage = 15,
-                             PictureName = "NuolaidaPadangoms.jpg",
-                             Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))}
-        };
-
+        private string ImagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagesForDiscounts");
+        private List<Discount> discountsList;
+        private Panel activePanel;
         private List<int> bottomlist = new List<int>();
 
         public InitialWindow()
         {
             InitializeComponent();
-            this.Controls.AddRange(new Control[] { newsFeed });
-            
+
+            activePanel = newsFeed;
+            activePanel.Show();
+
+            discountsList = new List<Discount>()
+            { 
+                new Discount() { Title = "Nuolaida padangoms!",
+                                 Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
+                                 Code = "padangos147852",
+                                 ExpirationDate = new DateTime(),
+                                 LimitedUse = false,
+                                 Percentage = 15,
+                                 PictureName = "NuolaidaPadangoms.jpg",
+                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))}
+            };
+
+
+            DisplayDiscounts(discountsList);
+
 
         }
 
@@ -45,10 +51,11 @@ namespace AutoDatabase
                 PictureBox pic = new PictureBox();
                 pic.Image = discount.Picture;
                 pic.Size = discount.Picture.Size;
-                pic.Click += (sender, e) => {
+                pic.Click += (sender, e) =>
+                {
                     //this.Hide();
                     new DiscountWindow(discount).Show();
-                };                
+                };
 
                 if (bottomlist.Count == 0)
                 {
@@ -68,22 +75,30 @@ namespace AutoDatabase
 
         private void HomeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            DisplayDiscounts(discountsList);
+            activePanel.Visible = false;
+            activePanel = newsFeed;
+            activePanel.Visible = true;
         }
 
         private void activeJobsRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
+            activePanel.Visible = false;
+            activePanel = activeJobsPanel;
+            activePanel.Visible = true;
         }
 
         private void jobsHistoryRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
+            activePanel.Visible = false;
+            activePanel = jobsHistoryPanel;
+            activePanel.Visible = true;
         }
 
         private void garragesRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-
+            activePanel.Visible = false;
+            activePanel = garagePanel;
+            activePanel.Visible = true;
         }
     }
 }

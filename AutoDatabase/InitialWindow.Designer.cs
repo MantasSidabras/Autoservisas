@@ -42,7 +42,11 @@
             this.activeJobsRadioButton = new System.Windows.Forms.RadioButton();
             this.HomeRadioButton = new System.Windows.Forms.RadioButton();
             this.newsFeed = new System.Windows.Forms.Panel();
+            this.activeJobsPanel = new System.Windows.Forms.Panel();
+            this.jobsHistoryPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.garagePanel = new System.Windows.Forms.Panel();
             this.menuPanel.SuspendLayout();
+            this.newsFeed.SuspendLayout();
             this.SuspendLayout();
             // 
             // usernameBox
@@ -208,16 +212,50 @@
             // 
             // newsFeed
             // 
+            this.newsFeed.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.newsFeed.Controls.Add(this.activeJobsPanel);
             this.newsFeed.Location = new System.Drawing.Point(174, 103);
             this.newsFeed.Name = "newsFeed";
             this.newsFeed.Size = new System.Drawing.Size(580, 446);
             this.newsFeed.TabIndex = 8;
+            this.newsFeed.Visible = false;
+            // 
+            // activeJobsPanel
+            // 
+            this.activeJobsPanel.BackColor = System.Drawing.SystemColors.ControlText;
+            this.activeJobsPanel.Location = new System.Drawing.Point(0, 0);
+            this.activeJobsPanel.Name = "activeJobsPanel";
+            this.activeJobsPanel.Size = new System.Drawing.Size(580, 446);
+            this.activeJobsPanel.TabIndex = 9;
+            this.activeJobsPanel.Visible = false;
+            // 
+            // jobsHistoryPanel
+            // 
+            this.jobsHistoryPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.jobsHistoryPanel.Location = new System.Drawing.Point(174, 103);
+            this.jobsHistoryPanel.Name = "jobsHistoryPanel";
+            this.jobsHistoryPanel.Size = new System.Drawing.Size(580, 446);
+            this.jobsHistoryPanel.TabIndex = 0;
+            this.jobsHistoryPanel.Visible = false;
+            this.jobsHistoryPanel.Visible = false;
+            // 
+            // garagePanel
+            // 
+            this.garagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.garagePanel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.garagePanel.Location = new System.Drawing.Point(174, 103);
+            this.garagePanel.Name = "garagePanel";
+            this.garagePanel.Size = new System.Drawing.Size(580, 446);
+            this.garagePanel.TabIndex = 10;
+            this.garagePanel.Visible = false;
             // 
             // InitialWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.jobsHistoryPanel);
+            this.Controls.Add(this.garagePanel);
             this.Controls.Add(this.newsFeed);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.registerButton);
@@ -228,6 +266,7 @@
             this.Text = "Autoservisas";
             this.menuPanel.ResumeLayout(false);
             this.menuPanel.PerformLayout();
+            this.newsFeed.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,5 +288,8 @@
         private System.Windows.Forms.RadioButton activeJobsRadioButton;
         private System.Windows.Forms.RadioButton HomeRadioButton;
         private System.Windows.Forms.Panel newsFeed;
+        private System.Windows.Forms.Panel garagePanel;
+        private System.Windows.Forms.Panel activeJobsPanel;
+        private System.Windows.Forms.FlowLayoutPanel jobsHistoryPanel;
     }
 }
