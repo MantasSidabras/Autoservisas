@@ -121,6 +121,10 @@
     <Compile Include="Employee.cs">
       <DependentUpon>AutoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="InitialWindow.cs" />
+    <Compile Include="InitialWindow.Designer.cs">
+      <DependentUpon>InitialWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Job.cs">
       <DependentUpon>AutoModel.tt</DependentUpon>
     </Compile>
