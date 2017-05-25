@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/25/2017 01:19:15
--- Generated from EDMX file: D:\My Stuff\Work\Mechanikas\auto-database\AutoDatabase\AutoModel.edmx
+-- Date Created: 05/25/2017 20:58:48
+-- Generated from EDMX file: C:\Users\Matas\Desktop\Autoservisas\AutoDatabase\AutoModel.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
-GO
-USE [AutoShop];
+--GO
+--USE [AutoShop];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -18,54 +18,90 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK_Client_Id_Car]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Car] DROP CONSTRAINT [FK_Client_Id_Car];
+    ALTER TABLE [dbo].[Cars] DROP CONSTRAINT [FK_Client_Id_Car];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Job_ToCar]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Job_ToCar];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Id_Company]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Companies] DROP CONSTRAINT [FK_Id_Company];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Id_Person]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_Id_Person];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Service_Id_Job]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Service_Id_Job];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Job_Distribution_Employee]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Job_Distribution] DROP CONSTRAINT [FK_Job_Distribution_Employee];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Job_Distribution_Service]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Job_Distribution] DROP CONSTRAINT [FK_Job_Distribution_Service];
+IF OBJECT_ID(N'[dbo].[FK_Job_Distribution_Job]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Job_Distribution] DROP CONSTRAINT [FK_Job_Distribution_Job];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Job_ToCar]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Job] DROP CONSTRAINT [FK_Job_ToCar];
+IF OBJECT_ID(N'[dbo].[FK_GarageClient_Garage]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GarageClient] DROP CONSTRAINT [FK_GarageClient_Garage];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Id_Company]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Company] DROP CONSTRAINT [FK_Id_Company];
+IF OBJECT_ID(N'[dbo].[FK_GarageClient_Client]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GarageClient] DROP CONSTRAINT [FK_GarageClient_Client];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Id_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Person] DROP CONSTRAINT [FK_Id_Person];
+IF OBJECT_ID(N'[dbo].[FK_GarageEmployee]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Employees] DROP CONSTRAINT [FK_GarageEmployee];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Service_Id_Job]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Job] DROP CONSTRAINT [FK_Service_Id_Job];
+IF OBJECT_ID(N'[dbo].[FK_GarageReview]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Reviews] DROP CONSTRAINT [FK_GarageReview];
+GO
+IF OBJECT_ID(N'[dbo].[FK_GarageService]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Services] DROP CONSTRAINT [FK_GarageService];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DiscountService_Discount]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DiscountService] DROP CONSTRAINT [FK_DiscountService_Discount];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DiscountService_Service]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DiscountService] DROP CONSTRAINT [FK_DiscountService_Service];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Car]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Car];
+IF OBJECT_ID(N'[dbo].[Cars]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Cars];
 GO
-IF OBJECT_ID(N'[dbo].[Client]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Client];
+IF OBJECT_ID(N'[dbo].[Clients]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Clients];
 GO
-IF OBJECT_ID(N'[dbo].[Company]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Company];
+IF OBJECT_ID(N'[dbo].[Companies]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Companies];
 GO
-IF OBJECT_ID(N'[dbo].[Employee]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Employee];
+IF OBJECT_ID(N'[dbo].[Employees]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Employees];
 GO
-IF OBJECT_ID(N'[dbo].[Job]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Job];
+IF OBJECT_ID(N'[dbo].[Jobs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Jobs];
+GO
+IF OBJECT_ID(N'[dbo].[People]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[People];
+GO
+IF OBJECT_ID(N'[dbo].[Services]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Services];
+GO
+IF OBJECT_ID(N'[dbo].[Garages]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Garages];
+GO
+IF OBJECT_ID(N'[dbo].[Reviews]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Reviews];
+GO
+IF OBJECT_ID(N'[dbo].[Discounts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Discounts];
 GO
 IF OBJECT_ID(N'[dbo].[Job_Distribution]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Job_Distribution];
 GO
-IF OBJECT_ID(N'[dbo].[Person]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Person];
+IF OBJECT_ID(N'[dbo].[GarageClient]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GarageClient];
 GO
-IF OBJECT_ID(N'[dbo].[Service]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Service];
+IF OBJECT_ID(N'[dbo].[DiscountService]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DiscountService];
 GO
 
 -- --------------------------------------------------
@@ -106,7 +142,8 @@ GO
 CREATE TABLE [dbo].[Employees] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
-    [Surname] nvarchar(50)  NOT NULL
+    [Surname] nvarchar(50)  NOT NULL,
+    [GarageId] int  NOT NULL
 );
 GO
 
@@ -134,7 +171,42 @@ CREATE TABLE [dbo].[Services] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(100)  NOT NULL,
     [Price] float  NOT NULL,
-    [Default_hours] float  NOT NULL
+    [Default_hours] float  NOT NULL,
+    [GarageId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Garages'
+CREATE TABLE [dbo].[Garages] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [BankAccount] nvarchar(max)  NOT NULL,
+    [City] nvarchar(max)  NOT NULL,
+    [Address] nvarchar(max)  NOT NULL,
+    [Owner] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Reviews'
+CREATE TABLE [dbo].[Reviews] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Text] nvarchar(max)  NOT NULL,
+    [Rating] smallint  NOT NULL,
+    [GarageId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Discounts'
+CREATE TABLE [dbo].[Discounts] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Title] nvarchar(max)  NOT NULL,
+    [Text] nvarchar(max)  NOT NULL,
+    [Code] nvarchar(max)  NOT NULL,
+    [Percentage] smallint  NOT NULL,
+    [UsesLeft] bigint  NOT NULL,
+    [LimitedUse] bit  NOT NULL,
+    [ExpirationDate] datetime  NOT NULL,
+    [PictureName] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -142,6 +214,20 @@ GO
 CREATE TABLE [dbo].[Job_Distribution] (
     [Employees_Id] int  NOT NULL,
     [Jobs_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'GarageClient'
+CREATE TABLE [dbo].[GarageClient] (
+    [Garages_Id] int  NOT NULL,
+    [Clients_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'DiscountService'
+CREATE TABLE [dbo].[DiscountService] (
+    [Discounts_Id] int  NOT NULL,
+    [Services_Id] int  NOT NULL
 );
 GO
 
@@ -191,10 +277,40 @@ ADD CONSTRAINT [PK_Services]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Garages'
+ALTER TABLE [dbo].[Garages]
+ADD CONSTRAINT [PK_Garages]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Reviews'
+ALTER TABLE [dbo].[Reviews]
+ADD CONSTRAINT [PK_Reviews]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Discounts'
+ALTER TABLE [dbo].[Discounts]
+ADD CONSTRAINT [PK_Discounts]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Employees_Id], [Jobs_Id] in table 'Job_Distribution'
 ALTER TABLE [dbo].[Job_Distribution]
 ADD CONSTRAINT [PK_Job_Distribution]
     PRIMARY KEY CLUSTERED ([Employees_Id], [Jobs_Id] ASC);
+GO
+
+-- Creating primary key on [Garages_Id], [Clients_Id] in table 'GarageClient'
+ALTER TABLE [dbo].[GarageClient]
+ADD CONSTRAINT [PK_GarageClient]
+    PRIMARY KEY CLUSTERED ([Garages_Id], [Clients_Id] ASC);
+GO
+
+-- Creating primary key on [Discounts_Id], [Services_Id] in table 'DiscountService'
+ALTER TABLE [dbo].[DiscountService]
+ADD CONSTRAINT [PK_DiscountService]
+    PRIMARY KEY CLUSTERED ([Discounts_Id], [Services_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -286,6 +402,99 @@ GO
 CREATE INDEX [IX_FK_Job_Distribution_Job]
 ON [dbo].[Job_Distribution]
     ([Jobs_Id]);
+GO
+
+-- Creating foreign key on [Garages_Id] in table 'GarageClient'
+ALTER TABLE [dbo].[GarageClient]
+ADD CONSTRAINT [FK_GarageClient_Garage]
+    FOREIGN KEY ([Garages_Id])
+    REFERENCES [dbo].[Garages]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Clients_Id] in table 'GarageClient'
+ALTER TABLE [dbo].[GarageClient]
+ADD CONSTRAINT [FK_GarageClient_Client]
+    FOREIGN KEY ([Clients_Id])
+    REFERENCES [dbo].[Clients]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GarageClient_Client'
+CREATE INDEX [IX_FK_GarageClient_Client]
+ON [dbo].[GarageClient]
+    ([Clients_Id]);
+GO
+
+-- Creating foreign key on [GarageId] in table 'Employees'
+ALTER TABLE [dbo].[Employees]
+ADD CONSTRAINT [FK_GarageEmployee]
+    FOREIGN KEY ([GarageId])
+    REFERENCES [dbo].[Garages]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GarageEmployee'
+CREATE INDEX [IX_FK_GarageEmployee]
+ON [dbo].[Employees]
+    ([GarageId]);
+GO
+
+-- Creating foreign key on [GarageId] in table 'Reviews'
+ALTER TABLE [dbo].[Reviews]
+ADD CONSTRAINT [FK_GarageReview]
+    FOREIGN KEY ([GarageId])
+    REFERENCES [dbo].[Garages]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GarageReview'
+CREATE INDEX [IX_FK_GarageReview]
+ON [dbo].[Reviews]
+    ([GarageId]);
+GO
+
+-- Creating foreign key on [GarageId] in table 'Services'
+ALTER TABLE [dbo].[Services]
+ADD CONSTRAINT [FK_GarageService]
+    FOREIGN KEY ([GarageId])
+    REFERENCES [dbo].[Garages]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_GarageService'
+CREATE INDEX [IX_FK_GarageService]
+ON [dbo].[Services]
+    ([GarageId]);
+GO
+
+-- Creating foreign key on [Discounts_Id] in table 'DiscountService'
+ALTER TABLE [dbo].[DiscountService]
+ADD CONSTRAINT [FK_DiscountService_Discount]
+    FOREIGN KEY ([Discounts_Id])
+    REFERENCES [dbo].[Discounts]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Services_Id] in table 'DiscountService'
+ALTER TABLE [dbo].[DiscountService]
+ADD CONSTRAINT [FK_DiscountService_Service]
+    FOREIGN KEY ([Services_Id])
+    REFERENCES [dbo].[Services]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DiscountService_Service'
+CREATE INDEX [IX_FK_DiscountService_Service]
+ON [dbo].[DiscountService]
+    ([Services_Id]);
 GO
 
 -- --------------------------------------------------

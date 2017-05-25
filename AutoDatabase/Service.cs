@@ -18,14 +18,19 @@ namespace AutoDatabase
         public Service()
         {
             this.Jobs = new HashSet<Job>();
+            this.Discounts = new HashSet<Discount>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public double Default_hours { get; set; }
+        public int GarageId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Job> Jobs { get; set; }
+        public virtual Garage Garage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Discount> Discounts { get; set; }
     }
 }

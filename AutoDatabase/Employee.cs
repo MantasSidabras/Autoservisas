@@ -23,8 +23,10 @@ namespace AutoDatabase
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public int GarageId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Job> Jobs { get; set; }
+        public virtual Garage Garage { get; set; }
     }
 }

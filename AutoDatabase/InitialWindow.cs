@@ -17,7 +17,15 @@ namespace AutoDatabase
         public static string ImagesPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagesForDiscounts");
         private List<Discount> discountsList = new List<Discount>()
         {
-            new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg")))
+            //new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg")))
+            new Discount() { Title = "Nuolaida padangoms!",
+                             Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
+                             Code = "padangos147852",
+                             ExpirationDate = new DateTime(),
+                             LimitedUse = false,
+                             Percentage = 15,
+                             PictureName = "NuolaidaPadangoms.jpg",
+                             Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))}
         };
 
         private List<int> bottomlist = new List<int>();

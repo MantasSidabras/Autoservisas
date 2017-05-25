@@ -4,204 +4,373 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="AutoShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Car">
-          <Key>
-            <PropertyRef Name="VIN" />
-          </Key>
-          <Property Name="VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Client_Id" Type="int" Nullable="false" />
-          <Property Name="NumberPlate" Type="nvarchar" MaxLength="50" />
-          <Property Name="Make" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Model" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Run" Type="int" Nullable="false" />
-          <Property Name="Engine" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Year" Type="int" Nullable="false" />
-          <Property Name="Arrived" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Adress" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telephone" Type="nvarchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Employee">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Job">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Service_Id" Type="int" Nullable="false" />
-          <Property Name="Car_VIN" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Start" Type="date" Nullable="false" />
-          <Property Name="Hours" Type="float" />
-          <Property Name="Finished" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Job_Distribution">
-          <Key>
-            <PropertyRef Name="Employee_Id" />
-            <PropertyRef Name="Job_Id" />
-          </Key>
-          <Property Name="Employee_Id" Type="int" Nullable="false" />
-          <Property Name="Job_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="Default_hours" Type="float" Nullable="false" />
-        </EntityType>
-        <Association Name="Client_Id_Car">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Car" Type="Self.Car" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Car">
-              <PropertyRef Name="Client_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Job_Distribution_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Job_Distribution" Type="Self.Job_Distribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job_Distribution">
-              <PropertyRef Name="Employee_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Job_Distribution_Service">
-          <End Role="Job" Type="Self.Job" Multiplicity="1" />
-          <End Role="Job_Distribution" Type="Self.Job_Distribution" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Job">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job_Distribution">
-              <PropertyRef Name="Job_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Job_ToCar">
-          <End Role="Car" Type="Self.Car" Multiplicity="1" />
-          <End Role="Job" Type="Self.Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Car">
-              <PropertyRef Name="VIN" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="Car_VIN" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Id_Company">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Company">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Id_Person">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Service_Id_Job">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
-          <End Role="Job" Type="Self.Job" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Job">
-              <PropertyRef Name="Service_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="AutoShopModelStoreContainer">
-          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Job_Distribution" EntityType="Self.Job_Distribution" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="Client_Id_Car" Association="Self.Client_Id_Car">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Car" EntitySet="Car" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Job_Distribution_Employee" Association="Self.FK_Job_Distribution_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Job_Distribution" EntitySet="Job_Distribution" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Job_Distribution_Service" Association="Self.FK_Job_Distribution_Service">
-            <End Role="Job" EntitySet="Job" />
-            <End Role="Job_Distribution" EntitySet="Job_Distribution" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Job_ToCar" Association="Self.FK_Job_ToCar">
-            <End Role="Car" EntitySet="Car" />
-            <End Role="Job" EntitySet="Job" />
-          </AssociationSet>
-          <AssociationSet Name="Id_Company" Association="Self.Id_Company">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Company" EntitySet="Company" />
-          </AssociationSet>
-          <AssociationSet Name="Id_Person" Association="Self.Id_Person">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Person" EntitySet="Person" />
-          </AssociationSet>
-          <AssociationSet Name="Service_Id_Job" Association="Self.Service_Id_Job">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="Job" EntitySet="Job" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="AutoShopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AutoShopModelStoreContainer">
+    <EntitySet Name="Cars" EntityType="AutoShopModel.Store.Cars" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Clients" EntityType="AutoShopModel.Store.Clients" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Companies" EntityType="AutoShopModel.Store.Companies" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="AutoShopModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs" EntityType="AutoShopModel.Store.Jobs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="AutoShopModel.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Services" EntityType="AutoShopModel.Store.Services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Garages" EntityType="AutoShopModel.Store.Garages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Reviews" EntityType="AutoShopModel.Store.Reviews" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Discounts" EntityType="AutoShopModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Job_Distribution" EntityType="AutoShopModel.Store.Job_Distribution" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="GarageClient" EntityType="AutoShopModel.Store.GarageClient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DiscountService" EntityType="AutoShopModel.Store.DiscountService" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="Client_Id_Car" Association="AutoShopModel.Store.Client_Id_Car">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Car" EntitySet="Cars" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_ToCar" Association="AutoShopModel.Store.FK_Job_ToCar">
+      <End Role="Car" EntitySet="Cars" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="Id_Company" Association="AutoShopModel.Store.Id_Company">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Company" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="Id_Person" Association="AutoShopModel.Store.Id_Person">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="Service_Id_Job" Association="AutoShopModel.Store.Service_Id_Job">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Job" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Distribution_Employee" Association="AutoShopModel.Store.FK_Job_Distribution_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Job_Distribution" EntitySet="Job_Distribution" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Job_Distribution_Job" Association="AutoShopModel.Store.FK_Job_Distribution_Job">
+      <End Role="Job" EntitySet="Jobs" />
+      <End Role="Job_Distribution" EntitySet="Job_Distribution" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GarageClient_Garage" Association="AutoShopModel.Store.FK_GarageClient_Garage">
+      <End Role="Garage" EntitySet="Garages" />
+      <End Role="GarageClient" EntitySet="GarageClient" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GarageClient_Client" Association="AutoShopModel.Store.FK_GarageClient_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="GarageClient" EntitySet="GarageClient" />
+    </AssociationSet>
+    <AssociationSet Name="GarageEmployee" Association="AutoShopModel.Store.GarageEmployee">
+      <End Role="Garage" EntitySet="Garages" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="GarageReview" Association="AutoShopModel.Store.GarageReview">
+      <End Role="Garage" EntitySet="Garages" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+    <AssociationSet Name="GarageService" Association="AutoShopModel.Store.GarageService">
+      <End Role="Garage" EntitySet="Garages" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiscountService_Discount" Association="AutoShopModel.Store.FK_DiscountService_Discount">
+      <End Role="Discount" EntitySet="Discounts" />
+      <End Role="DiscountService" EntitySet="DiscountService" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiscountService_Service" Association="AutoShopModel.Store.FK_DiscountService_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="DiscountService" EntitySet="DiscountService" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cars">
+    <Key>
+      <PropertyRef Name="VIN" />
+    </Key>
+    <Property Name="VIN" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
+    <Property Name="NumberPlate" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Make" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Run" Type="int" Nullable="false" />
+    <Property Name="Engine" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Arrived" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adress" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="GarageId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Service_Id" Type="int" Nullable="false" />
+    <Property Name="Car_VIN" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Start" Type="datetime" Nullable="false" />
+    <Property Name="Hours" Type="float" Nullable="true" />
+    <Property Name="Finished" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Services">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Default_hours" Type="float" Nullable="false" />
+    <Property Name="GarageId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Garages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BankAccount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="City" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Owner" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reviews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Rating" Type="smallint" Nullable="false" />
+    <Property Name="GarageId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Percentage" Type="smallint" Nullable="false" />
+    <Property Name="UsesLeft" Type="bigint" Nullable="false" />
+    <Property Name="LimitedUse" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
+    <Property Name="PictureName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Job_Distribution">
+    <Key>
+      <PropertyRef Name="Employees_Id" />
+      <PropertyRef Name="Jobs_Id" />
+    </Key>
+    <Property Name="Employees_Id" Type="int" Nullable="false" />
+    <Property Name="Jobs_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GarageClient">
+    <Key>
+      <PropertyRef Name="Garages_Id" />
+      <PropertyRef Name="Clients_Id" />
+    </Key>
+    <Property Name="Garages_Id" Type="int" Nullable="false" />
+    <Property Name="Clients_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DiscountService">
+    <Key>
+      <PropertyRef Name="Discounts_Id" />
+      <PropertyRef Name="Services_Id" />
+    </Key>
+    <Property Name="Discounts_Id" Type="int" Nullable="false" />
+    <Property Name="Services_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="Client_Id_Car">
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
+    <End Role="Car" Type="AutoShopModel.Store.Cars" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Car">
+        <PropertyRef Name="Client_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_ToCar">
+    <End Role="Car" Type="AutoShopModel.Store.Cars" Multiplicity="1" />
+    <End Role="Job" Type="AutoShopModel.Store.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="VIN" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="Car_VIN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Id_Company">
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
+    <End Role="Company" Type="AutoShopModel.Store.Companies" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Company">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Id_Person">
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
+    <End Role="Person" Type="AutoShopModel.Store.People" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Service_Id_Job">
+    <End Role="Service" Type="AutoShopModel.Store.Services" Multiplicity="1" />
+    <End Role="Job" Type="AutoShopModel.Store.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job">
+        <PropertyRef Name="Service_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GarageEmployee">
+    <End Role="Garage" Type="AutoShopModel.Store.Garages" Multiplicity="1" />
+    <End Role="Employee" Type="AutoShopModel.Store.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Garage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="GarageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GarageReview">
+    <End Role="Garage" Type="AutoShopModel.Store.Garages" Multiplicity="1" />
+    <End Role="Review" Type="AutoShopModel.Store.Reviews" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Garage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="GarageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GarageService">
+    <End Role="Garage" Type="AutoShopModel.Store.Garages" Multiplicity="1" />
+    <End Role="Service" Type="AutoShopModel.Store.Services" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Garage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="GarageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Distribution_Employee">
+    <End Role="Employee" Type="AutoShopModel.Store.Employees" Multiplicity="1" />
+    <End Role="Job_Distribution" Type="AutoShopModel.Store.Job_Distribution" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job_Distribution">
+        <PropertyRef Name="Employees_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Job_Distribution_Job">
+    <End Role="Job_Distribution" Type="AutoShopModel.Store.Job_Distribution" Multiplicity="*" />
+    <End Role="Job" Type="AutoShopModel.Store.Jobs" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Job">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Job_Distribution">
+        <PropertyRef Name="Jobs_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GarageClient_Garage">
+    <End Role="Garage" Type="AutoShopModel.Store.Garages" Multiplicity="1" />
+    <End Role="GarageClient" Type="AutoShopModel.Store.GarageClient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Garage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GarageClient">
+        <PropertyRef Name="Garages_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GarageClient_Client">
+    <End Role="GarageClient" Type="AutoShopModel.Store.GarageClient" Multiplicity="*" />
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GarageClient">
+        <PropertyRef Name="Clients_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiscountService_Discount">
+    <End Role="Discount" Type="AutoShopModel.Store.Discounts" Multiplicity="1" />
+    <End Role="DiscountService" Type="AutoShopModel.Store.DiscountService" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DiscountService">
+        <PropertyRef Name="Discounts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiscountService_Service">
+    <End Role="DiscountService" Type="AutoShopModel.Store.DiscountService" Multiplicity="*" />
+    <End Role="Service" Type="AutoShopModel.Store.Services" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DiscountService">
+        <PropertyRef Name="Services_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AutoShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -231,6 +400,7 @@
           <NavigationProperty Name="Cars" Relationship="Self.Client_Id_Car" FromRole="Client" ToRole="Car" />
           <NavigationProperty Name="Company" Relationship="Self.Id_Company" FromRole="Client" ToRole="Company" />
           <NavigationProperty Name="Person" Relationship="Self.Id_Person" FromRole="Client" ToRole="Person" />
+          <NavigationProperty Name="Garages" Relationship="AutoShopModel.GarageClient" FromRole="Client" ToRole="Garage" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -249,6 +419,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.Job_Distribution" FromRole="Employee" ToRole="Job" />
+          <NavigationProperty Name="Garage" Relationship="AutoShopModel.GarageEmployee" FromRole="Employee" ToRole="Garage" />
+          <Property Name="GarageId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Job">
           <Key>
@@ -282,6 +454,9 @@
           <Property Name="Price" Type="Double" Nullable="false" />
           <NavigationProperty Name="Jobs" Relationship="Self.Service_Id_Job" FromRole="Service" ToRole="Job" />
           <Property Name="Default_hours" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Garage" Relationship="AutoShopModel.GarageService" FromRole="Service" ToRole="Garage" />
+          <Property Name="GarageId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discounts" Relationship="AutoShopModel.DiscountService" FromRole="Service" ToRole="Discount" />
         </EntityType>
         <Association Name="Client_Id_Car">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
@@ -379,97 +554,258 @@
             <End Role="Employee" EntitySet="Employees" />
             <End Role="Job" EntitySet="Jobs" />
           </AssociationSet>
+          <EntitySet Name="Garages" EntityType="AutoShopModel.Garage" />
+          <AssociationSet Name="GarageClient" Association="AutoShopModel.GarageClient">
+            <End Role="Garage" EntitySet="Garages" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="GarageEmployee" Association="AutoShopModel.GarageEmployee">
+            <End Role="Garage" EntitySet="Garages" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <EntitySet Name="Reviews" EntityType="AutoShopModel.Review" />
+          <AssociationSet Name="GarageReview" Association="AutoShopModel.GarageReview">
+            <End Role="Garage" EntitySet="Garages" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="GarageService" Association="AutoShopModel.GarageService">
+            <End Role="Garage" EntitySet="Garages" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
+          <EntitySet Name="Discounts" EntityType="AutoShopModel.Discount" />
+          <AssociationSet Name="DiscountService" Association="AutoShopModel.DiscountService">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="Service" EntitySet="Services" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Garage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Clients" Relationship="AutoShopModel.GarageClient" FromRole="Garage" ToRole="Client" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="BankAccount" Type="String" Nullable="false" />
+          <Property Name="City" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Owner" Type="String" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="AutoShopModel.GarageEmployee" FromRole="Garage" ToRole="Employee" />
+          <NavigationProperty Name="Reviews" Relationship="AutoShopModel.GarageReview" FromRole="Garage" ToRole="Review" />
+          <NavigationProperty Name="Services" Relationship="AutoShopModel.GarageService" FromRole="Garage" ToRole="Service" />
+        </EntityType>
+        <Association Name="GarageClient">
+          <End Type="AutoShopModel.Garage" Role="Garage" Multiplicity="*" />
+          <End Type="AutoShopModel.Client" Role="Client" Multiplicity="*" />
+        </Association>
+        <Association Name="GarageEmployee">
+          <End Type="AutoShopModel.Garage" Role="Garage" Multiplicity="1" />
+          <End Type="AutoShopModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="GarageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" Nullable="false" />
+          <Property Name="Rating" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <NavigationProperty Name="Garage" Relationship="AutoShopModel.GarageReview" FromRole="Review" ToRole="Garage" />
+          <Property Name="GarageId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="GarageReview">
+          <End Type="AutoShopModel.Garage" Role="Garage" Multiplicity="1" />
+          <End Type="AutoShopModel.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="GarageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="GarageService">
+          <End Type="AutoShopModel.Garage" Role="Garage" Multiplicity="1" />
+          <End Type="AutoShopModel.Service" Role="Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Garage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="GarageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" />
+          <Property Name="Percentage" Type="Int16" Nullable="false" />
+          <Property Name="UsesLeft" Type="Int64" Nullable="false" />
+          <Property Name="LimitedUse" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" />
+          <Property Name="PictureName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Services" Relationship="AutoShopModel.DiscountService" FromRole="Discount" ToRole="Service" />
+        </EntityType>
+        <Association Name="DiscountService">
+          <End Type="AutoShopModel.Discount" Role="Discount" Multiplicity="*" />
+          <End Type="AutoShopModel.Service" Role="Service" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AutoShopModelStoreContainer" CdmEntityContainer="AutoShopEntities">
-          <EntitySetMapping Name="Cars">
-            <EntityTypeMapping TypeName="AutoShopModel.Car">
-              <MappingFragment StoreEntitySet="Car">
-                <ScalarProperty Name="Arrived" ColumnName="Arrived" />
-                <ScalarProperty Name="VIN" ColumnName="VIN" />
-                <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
-                <ScalarProperty Name="NumberPlate" ColumnName="NumberPlate" />
-                <ScalarProperty Name="Make" ColumnName="Make" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Run" ColumnName="Run" />
-                <ScalarProperty Name="Engine" ColumnName="Engine" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="AutoShopModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Companies">
-            <EntityTypeMapping TypeName="AutoShopModel.Company">
-              <MappingFragment StoreEntitySet="Company">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="AutoShopModel.Employee">
-              <MappingFragment StoreEntitySet="Employee">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Jobs">
-            <EntityTypeMapping TypeName="AutoShopModel.Job">
-              <MappingFragment StoreEntitySet="Job">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Service_Id" ColumnName="Service_Id" />
-                <ScalarProperty Name="Car_VIN" ColumnName="Car_VIN" />
-                <ScalarProperty Name="Start" ColumnName="Start" />
-                <ScalarProperty Name="Hours" ColumnName="Hours" />
-                <ScalarProperty Name="Finished" ColumnName="Finished" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="AutoShopModel.Person">
-              <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Services">
-            <EntityTypeMapping TypeName="AutoShopModel.Service">
-              <MappingFragment StoreEntitySet="Service">
-                <ScalarProperty Name="Default_hours" ColumnName="Default_hours" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Job_Distribution" TypeName="AutoShopModel.Job_Distribution" StoreEntitySet="Job_Distribution">
-            <EndProperty Name="Employee">
-              <ScalarProperty Name="Id" ColumnName="Employee_Id" />
-            </EndProperty>
-            <EndProperty Name="Job">
-              <ScalarProperty Name="Id" ColumnName="Job_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AutoShopModelStoreContainer" CdmEntityContainer="AutoShopEntities">
+    <EntitySetMapping Name="Cars">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Car)">
+        <MappingFragment StoreEntitySet="Cars">
+          <ScalarProperty Name="VIN" ColumnName="VIN" />
+          <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
+          <ScalarProperty Name="NumberPlate" ColumnName="NumberPlate" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Run" ColumnName="Run" />
+          <ScalarProperty Name="Engine" ColumnName="Engine" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Arrived" ColumnName="Arrived" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Client)">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Company)">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Employee)">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="GarageId" ColumnName="GarageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Job)">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Service_Id" ColumnName="Service_Id" />
+          <ScalarProperty Name="Car_VIN" ColumnName="Car_VIN" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="Hours" ColumnName="Hours" />
+          <ScalarProperty Name="Finished" ColumnName="Finished" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Person)">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Service)">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Default_hours" ColumnName="Default_hours" />
+          <ScalarProperty Name="GarageId" ColumnName="GarageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Garages">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Garage)">
+        <MappingFragment StoreEntitySet="Garages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reviews">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Review)">
+        <MappingFragment StoreEntitySet="Reviews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="GarageId" ColumnName="GarageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discounts">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Discount)">
+        <MappingFragment StoreEntitySet="Discounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+          <ScalarProperty Name="UsesLeft" ColumnName="UsesLeft" />
+          <ScalarProperty Name="LimitedUse" ColumnName="LimitedUse" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="PictureName" ColumnName="PictureName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Job_Distribution" TypeName="AutoShopModel.Job_Distribution" StoreEntitySet="Job_Distribution">
+      <EndProperty Name="Employee">
+        <ScalarProperty Name="Id" ColumnName="Employees_Id" />
+      </EndProperty>
+      <EndProperty Name="Job">
+        <ScalarProperty Name="Id" ColumnName="Jobs_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="GarageClient" TypeName="AutoShopModel.GarageClient" StoreEntitySet="GarageClient">
+      <EndProperty Name="Garage">
+        <ScalarProperty Name="Id" ColumnName="Garages_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Clients_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DiscountService" TypeName="AutoShopModel.DiscountService" StoreEntitySet="DiscountService">
+      <EndProperty Name="Discount">
+        <ScalarProperty Name="Id" ColumnName="Discounts_Id" />
+      </EndProperty>
+      <EndProperty Name="Service">
+        <ScalarProperty Name="Id" ColumnName="Services_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -483,7 +819,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

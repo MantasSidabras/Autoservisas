@@ -111,7 +111,10 @@
       <DependentUpon>AutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataController.cs" />
-    <Compile Include="Discount.cs" />
+    <Compile Include="Discount.cs">
+      <DependentUpon>AutoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DiscountPartial.cs" />
     <Compile Include="DiscountWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +122,9 @@
       <DependentUpon>DiscountWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
+      <DependentUpon>AutoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Garage.cs">
       <DependentUpon>AutoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="InitialWindow.cs">
@@ -141,6 +147,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Review.cs">
+      <DependentUpon>AutoModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Service.cs">
       <DependentUpon>AutoModel.tt</DependentUpon>
     </Compile>
@@ -150,6 +159,7 @@
     <Compile Include="UpdateClientForm.Designer.cs">
       <DependentUpon>UpdateClientForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ImageSerialization.cs" />
     <EmbeddedResource Include="AddServiceForm.resx">
       <DependentUpon>AddServiceForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +222,7 @@
       <DependentUpon>AutoModel.edmx</DependentUpon>
       <LastGenOutput>AutoModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="AutoModel.edmx.sql" />
     <Content Include="AutoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>AutoModel.edmx</DependentUpon>

@@ -18,6 +18,7 @@ namespace AutoDatabase
         public Client()
         {
             this.Cars = new HashSet<Car>();
+            this.Garages = new HashSet<Garage>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace AutoDatabase
         public virtual ICollection<Car> Cars { get; set; }
         public virtual Company Company { get; set; }
         public virtual Person Person { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Garage> Garages { get; set; }
     }
 }
