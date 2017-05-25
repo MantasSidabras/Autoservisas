@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,9 +14,10 @@ namespace AutoDatabase
 {
     public partial class InitialWindow : Form
     {
+        public static string ImagesPath { get; } = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagesForDiscounts");
         private List<Discount> discountsList = new List<Discount>()
         {
-            new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap(@"D:\Users\MANTAS\Pictures\NuolaidaPadangoms.jpg"))
+            new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg")))
         };
 
         private List<int> bottomlist = new List<int>();
