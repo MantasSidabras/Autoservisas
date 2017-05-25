@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,6 +34,20 @@ namespace AutoDatabase
         public InitialWindow()
         {
             InitializeComponent();
+            using (WebClient client = new WebClient())
+            {
+                client.DownloadFile(new Uri(@"http://www.part.lt/img/05ca0bf9bf15e0818506e0b8d96caf3c457.jpg"), @"C:\Users\MANTAS\Desktop\testDownload\file.jpg");
+                //OR 
+                //client.DownloadFileAsync(new Uri(url), @"c:\temp\image35.png");
+            }
+
+            discountsList = new List<Discount>()
+        {
+            //new Discount("Nuolaida padangoms!", "Sezono pradžiai pasikeiskite senas padangas pigiau.", "padangos147852", new Bitmap())
+        };
+
+
+            this.Controls.AddRange(new Control[] { newsFeed });
         }
 
         public void DisplayDiscounts(List<Discount> discounts)
@@ -40,14 +55,15 @@ namespace AutoDatabase
             foreach (var discount in discounts)
             {
                 PictureBox pic = new PictureBox();
-                
+
 
                 pic.Image = discount.Picture;
                 pic.Size = discount.Picture.Size;
-                pic.Click += (sender, e) => {
+                pic.Click += (sender, e) =>
+                {
                     //this.Hide();
                     new DiscountWindow(discount).Show();
-                };                
+                };
 
                 if (bottomlist.Count == 0)
                 {
@@ -65,10 +81,24 @@ namespace AutoDatabase
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void HomeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            bottomlist.Clear();
-            DisplayDiscounts(discountsList);
+            Controls[0].BringToFront();
+        }
+
+        private void activeJobsRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void jobsHistoryRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void garragesRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

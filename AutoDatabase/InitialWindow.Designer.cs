@@ -28,24 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InitialWindow));
             this.usernameBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.registerButton = new System.Windows.Forms.Button();
+            this.menuPanel = new System.Windows.Forms.Panel();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.discountImages = new System.Windows.Forms.ImageList(this.components);
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.garragesRadioButton = new System.Windows.Forms.RadioButton();
+            this.jobsHistoryRadioButton = new System.Windows.Forms.RadioButton();
+            this.activeJobsRadioButton = new System.Windows.Forms.RadioButton();
+            this.HomeRadioButton = new System.Windows.Forms.RadioButton();
             this.newsFeed = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
+            this.menuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // usernameBox
@@ -75,123 +72,31 @@
             this.loginButton.Text = "Prisijungti";
             this.loginButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // registerButton
             // 
-            this.button1.Location = new System.Drawing.Point(679, 63);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Registruotis";
-            this.button1.UseVisualStyleBackColor = true;
+            this.registerButton.Location = new System.Drawing.Point(679, 63);
+            this.registerButton.Name = "registerButton";
+            this.registerButton.Size = new System.Drawing.Size(75, 23);
+            this.registerButton.TabIndex = 3;
+            this.registerButton.Text = "Registruotis";
+            this.registerButton.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // menuPanel
             // 
-            this.panel1.Controls.Add(this.radioButton8);
-            this.panel1.Controls.Add(this.radioButton7);
-            this.panel1.Controls.Add(this.radioButton6);
-            this.panel1.Controls.Add(this.radioButton5);
-            this.panel1.Controls.Add(this.radioButton4);
-            this.panel1.Controls.Add(this.radioButton3);
-            this.panel1.Controls.Add(this.radioButton2);
-            this.panel1.Controls.Add(this.radioButton1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0, 80, 0, 0);
-            this.panel1.Size = new System.Drawing.Size(136, 561);
-            this.panel1.TabIndex = 4;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton1.Location = new System.Drawing.Point(0, 80);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(136, 23);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton2.Location = new System.Drawing.Point(0, 103);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(136, 23);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton3.Location = new System.Drawing.Point(0, 126);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(136, 23);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton4.Location = new System.Drawing.Point(0, 149);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(136, 23);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton5.Location = new System.Drawing.Point(0, 172);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(136, 23);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "radioButton5";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton6.Location = new System.Drawing.Point(0, 195);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(136, 23);
-            this.radioButton6.TabIndex = 5;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "radioButton6";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radioButton7.Location = new System.Drawing.Point(0, 218);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(136, 23);
-            this.radioButton7.TabIndex = 6;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "radioButton7";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.menuPanel.Controls.Add(this.radioButton8);
+            this.menuPanel.Controls.Add(this.radioButton7);
+            this.menuPanel.Controls.Add(this.radioButton6);
+            this.menuPanel.Controls.Add(this.radioButton5);
+            this.menuPanel.Controls.Add(this.garragesRadioButton);
+            this.menuPanel.Controls.Add(this.jobsHistoryRadioButton);
+            this.menuPanel.Controls.Add(this.activeJobsRadioButton);
+            this.menuPanel.Controls.Add(this.HomeRadioButton);
+            this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.menuPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuPanel.Name = "menuPanel";
+            this.menuPanel.Padding = new System.Windows.Forms.Padding(0, 80, 0, 0);
+            this.menuPanel.Size = new System.Drawing.Size(136, 561);
+            this.menuPanel.TabIndex = 4;
             // 
             // radioButton8
             // 
@@ -206,12 +111,100 @@
             this.radioButton8.Text = "radioButton8";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
-            // discountImages
+            // radioButton7
             // 
-            this.discountImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("discountImages.ImageStream")));
-            this.discountImages.TransparentColor = System.Drawing.Color.Transparent;
-            this.discountImages.Images.SetKeyName(0, "nuolaida1.png");
-            this.discountImages.Images.SetKeyName(1, "DinoScore.JPG");
+            this.radioButton7.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radioButton7.Location = new System.Drawing.Point(0, 218);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(136, 23);
+            this.radioButton7.TabIndex = 6;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "radioButton7";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radioButton6.Location = new System.Drawing.Point(0, 195);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(136, 23);
+            this.radioButton6.TabIndex = 5;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "radioButton6";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radioButton5.Location = new System.Drawing.Point(0, 172);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(136, 23);
+            this.radioButton5.TabIndex = 4;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "radioButton5";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // garragesRadioButton
+            // 
+            this.garragesRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.garragesRadioButton.AutoSize = true;
+            this.garragesRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.garragesRadioButton.Location = new System.Drawing.Point(0, 149);
+            this.garragesRadioButton.Name = "garragesRadioButton";
+            this.garragesRadioButton.Size = new System.Drawing.Size(136, 23);
+            this.garragesRadioButton.TabIndex = 3;
+            this.garragesRadioButton.TabStop = true;
+            this.garragesRadioButton.Text = "Autoservisai";
+            this.garragesRadioButton.UseVisualStyleBackColor = true;
+            this.garragesRadioButton.CheckedChanged += new System.EventHandler(this.garragesRadioButton_CheckedChanged);
+            // 
+            // jobsHistoryRadioButton
+            // 
+            this.jobsHistoryRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.jobsHistoryRadioButton.AutoSize = true;
+            this.jobsHistoryRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.jobsHistoryRadioButton.Location = new System.Drawing.Point(0, 126);
+            this.jobsHistoryRadioButton.Name = "jobsHistoryRadioButton";
+            this.jobsHistoryRadioButton.Size = new System.Drawing.Size(136, 23);
+            this.jobsHistoryRadioButton.TabIndex = 2;
+            this.jobsHistoryRadioButton.TabStop = true;
+            this.jobsHistoryRadioButton.Text = "Darbų istorija";
+            this.jobsHistoryRadioButton.UseVisualStyleBackColor = true;
+            this.jobsHistoryRadioButton.CheckedChanged += new System.EventHandler(this.jobsHistoryRadioButton_CheckedChanged);
+            // 
+            // activeJobsRadioButton
+            // 
+            this.activeJobsRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.activeJobsRadioButton.AutoSize = true;
+            this.activeJobsRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.activeJobsRadioButton.Location = new System.Drawing.Point(0, 103);
+            this.activeJobsRadioButton.Name = "activeJobsRadioButton";
+            this.activeJobsRadioButton.Size = new System.Drawing.Size(136, 23);
+            this.activeJobsRadioButton.TabIndex = 1;
+            this.activeJobsRadioButton.TabStop = true;
+            this.activeJobsRadioButton.Text = "Akyvūs darbai";
+            this.activeJobsRadioButton.UseVisualStyleBackColor = true;
+            this.activeJobsRadioButton.CheckedChanged += new System.EventHandler(this.activeJobsRadioButton_CheckedChanged);
+            // 
+            // HomeRadioButton
+            // 
+            this.HomeRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.HomeRadioButton.AutoSize = true;
+            this.HomeRadioButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.HomeRadioButton.Location = new System.Drawing.Point(0, 80);
+            this.HomeRadioButton.Name = "HomeRadioButton";
+            this.HomeRadioButton.Size = new System.Drawing.Size(136, 23);
+            this.HomeRadioButton.TabIndex = 0;
+            this.HomeRadioButton.TabStop = true;
+            this.HomeRadioButton.Text = "Pradžia";
+            this.HomeRadioButton.UseVisualStyleBackColor = true;
+            this.HomeRadioButton.CheckedChanged += new System.EventHandler(this.HomeRadioButton_CheckedChanged);
             // 
             // newsFeed
             // 
@@ -226,15 +219,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.newsFeed);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.menuPanel);
+            this.Controls.Add(this.registerButton);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.usernameBox);
             this.Name = "InitialWindow";
             this.Text = "Autoservisas";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.menuPanel.ResumeLayout(false);
+            this.menuPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -245,17 +238,16 @@
         private System.Windows.Forms.TextBox usernameBox;
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button registerButton;
+        private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton6;
         private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.ImageList discountImages;
+        private System.Windows.Forms.RadioButton garragesRadioButton;
+        private System.Windows.Forms.RadioButton jobsHistoryRadioButton;
+        private System.Windows.Forms.RadioButton activeJobsRadioButton;
+        private System.Windows.Forms.RadioButton HomeRadioButton;
         private System.Windows.Forms.Panel newsFeed;
     }
 }
