@@ -16,6 +16,7 @@
     <EntitySet Name="Garages" EntityType="AutoShopModel.Store.Garages" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Reviews" EntityType="AutoShopModel.Store.Reviews" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Discounts" EntityType="AutoShopModel.Store.Discounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="AutoShopModel.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Job_Distribution" EntityType="AutoShopModel.Store.Job_Distribution" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GarageClient" EntityType="AutoShopModel.Store.GarageClient" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DiscountService" EntityType="AutoShopModel.Store.DiscountService" store:Type="Tables" Schema="dbo" />
@@ -75,6 +76,10 @@
       <End Role="Service" EntitySet="Services" />
       <End Role="DiscountService" EntitySet="DiscountService" />
     </AssociationSet>
+    <AssociationSet Name="UserClient" Association="AutoShopModel.Store.UserClient">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Cars">
     <Key>
@@ -97,6 +102,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adress" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="User_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Companies">
     <Key>
@@ -177,6 +183,15 @@
     <Property Name="LimitedUse" Type="bit" Nullable="false" DefaultValue="false" />
     <Property Name="ExpirationDate" Type="datetime" Nullable="false" />
     <Property Name="PictureName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsAdmin" Type="bit" Nullable="false" DefaultValue="false" />
   </EntityType>
   <EntityType Name="Job_Distribution">
     <Key>
@@ -298,6 +313,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserClient">
+    <End Role="User" Type="AutoShopModel.Store.Users" Multiplicity="0..1" />
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Job_Distribution_Employee">
     <End Role="Employee" Type="AutoShopModel.Store.Employees" Multiplicity="1" />
     <End Role="Job_Distribution" Type="AutoShopModel.Store.Job_Distribution" Multiplicity="*" />
@@ -401,6 +428,7 @@
           <NavigationProperty Name="Company" Relationship="Self.Id_Company" FromRole="Client" ToRole="Company" />
           <NavigationProperty Name="Person" Relationship="Self.Id_Person" FromRole="Client" ToRole="Person" />
           <NavigationProperty Name="Garages" Relationship="AutoShopModel.GarageClient" FromRole="Client" ToRole="Garage" />
+          <NavigationProperty Name="User" Relationship="AutoShopModel.UserClient" FromRole="Client" ToRole="User" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -577,6 +605,11 @@
             <End Role="Discount" EntitySet="Discounts" />
             <End Role="Service" EntitySet="Services" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="AutoShopModel.User" />
+          <AssociationSet Name="UserClient" Association="AutoShopModel.UserClient">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Garage">
           <Key>
@@ -661,6 +694,20 @@
         <Association Name="DiscountService">
           <End Type="AutoShopModel.Discount" Role="Discount" Multiplicity="*" />
           <End Type="AutoShopModel.Service" Role="Service" Multiplicity="*" />
+        </Association>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" DefaultValue="False" />
+          <NavigationProperty Name="Client" Relationship="AutoShopModel.UserClient" FromRole="User" ToRole="Client" />
+        </EntityType>
+        <Association Name="UserClient">
+          <End Type="AutoShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="AutoShopModel.Client" Role="Client" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -780,6 +827,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="Job_Distribution" TypeName="AutoShopModel.Job_Distribution" StoreEntitySet="Job_Distribution">
       <EndProperty Name="Employee">
         <ScalarProperty Name="Id" ColumnName="Employees_Id" />
@@ -803,6 +860,15 @@
       <EndProperty Name="Service">
         <ScalarProperty Name="Id" ColumnName="Services_Id" />
       </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserClient" TypeName="AutoShopModel.UserClient" StoreEntitySet="Clients">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="User_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
