@@ -13,16 +13,12 @@ namespace AutoDatabase
 {
 	public partial class MainForm : Form
 	{
-		DataSet dataSet;
-		EmployeeTable employees;
 		private bool selectedClientPerson = true;
 		DataController data;
 
 		public MainForm()
 		{
 			InitializeComponent();
-			dataSet = new DataSet();
-			employees = new EmployeeTable(Properties.Settings.Default.connectionString, dataSet);
 
 			data = new DataController();
 
