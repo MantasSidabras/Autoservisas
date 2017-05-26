@@ -93,6 +93,7 @@
             this.labelKlientaiGen = new System.Windows.Forms.Label();
             this.listBoxGeneratorClients = new System.Windows.Forms.ListBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.NewsFeed = new System.Windows.Forms.TabPage();
             this.tabControl.SuspendLayout();
             this.RegistrateClientTab.SuspendLayout();
             this.JobsTab.SuspendLayout();
@@ -112,6 +113,7 @@
             this.tabControl.Controls.Add(this.dataControllerTab);
             this.tabControl.Controls.Add(this.SystemLogTab);
             this.tabControl.Controls.Add(this.tabGenerator);
+            this.tabControl.Controls.Add(this.NewsFeed);
             this.tabControl.Location = new System.Drawing.Point(-1, 1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -788,6 +790,17 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // NewsFeed
+            // 
+            this.NewsFeed.AccessibleName = "";
+            this.NewsFeed.Location = new System.Drawing.Point(4, 22);
+            this.NewsFeed.Name = "NewsFeed";
+            this.NewsFeed.Padding = new System.Windows.Forms.Padding(3);
+            this.NewsFeed.Size = new System.Drawing.Size(800, 481);
+            this.NewsFeed.TabIndex = 12;
+            this.NewsFeed.Text = "Naujienos ir nuolaidos";
+            this.NewsFeed.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -877,6 +890,7 @@
         private System.Windows.Forms.Button buttonGenerateBill;
         private System.Windows.Forms.Label labelKlientaiGen;
         private System.Windows.Forms.ListBox listBoxGeneratorClients;
+        private System.Windows.Forms.TabPage NewsFeed;
     }
 }
 

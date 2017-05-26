@@ -41,5 +41,26 @@ namespace AutoDatabase
                 passwordTextBox.UseSystemPasswordChar = true;
             }         
         }
+
+        //private void loginButton_Click(object sender, EventArgs e)
+        //{
+        //    string username = usernameTextBox.Text;
+        //    string password = passwordTextBox.Text;
+
+        //    if (User user = GetUser(username, password) != null)
+        //    {
+        //        this.Hide();
+        //        if (admin)
+        //        {
+        //            new MainForm(user).Show();
+        //        }
+        //        else
+        //        {
+        //            new InitialWindow(user).Show();
+        //        }
+        //    }
+        //}
+
+
     }
 }
