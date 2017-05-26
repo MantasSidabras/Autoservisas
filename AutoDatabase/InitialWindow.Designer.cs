@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.usernameBox = new System.Windows.Forms.TextBox();
-            this.passwordBox = new System.Windows.Forms.TextBox();
-            this.loginButton = new System.Windows.Forms.Button();
-            this.registerButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
@@ -49,41 +46,15 @@
             this.newsFeed.SuspendLayout();
             this.SuspendLayout();
             // 
-            // usernameBox
+            // exitButton
             // 
-            this.usernameBox.Location = new System.Drawing.Point(451, 25);
-            this.usernameBox.Name = "usernameBox";
-            this.usernameBox.Size = new System.Drawing.Size(100, 20);
-            this.usernameBox.TabIndex = 0;
-            this.usernameBox.Text = "Prisijungimo vardas";
-            // 
-            // passwordBox
-            // 
-            this.passwordBox.Location = new System.Drawing.Point(557, 26);
-            this.passwordBox.Name = "passwordBox";
-            this.passwordBox.PasswordChar = '*';
-            this.passwordBox.Size = new System.Drawing.Size(100, 20);
-            this.passwordBox.TabIndex = 1;
-            this.passwordBox.Text = "Slaptažodis";
-            this.passwordBox.UseSystemPasswordChar = true;
-            // 
-            // loginButton
-            // 
-            this.loginButton.Location = new System.Drawing.Point(679, 23);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(75, 23);
-            this.loginButton.TabIndex = 2;
-            this.loginButton.Text = "Prisijungti";
-            this.loginButton.UseVisualStyleBackColor = true;
-            // 
-            // registerButton
-            // 
-            this.registerButton.Location = new System.Drawing.Point(679, 63);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(75, 23);
-            this.registerButton.TabIndex = 3;
-            this.registerButton.Text = "Registruotis";
-            this.registerButton.UseVisualStyleBackColor = true;
+            this.exitButton.Location = new System.Drawing.Point(0, 526);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.exitButton.Size = new System.Drawing.Size(136, 23);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.Text = "Atsijungti";
+            this.exitButton.UseVisualStyleBackColor = true;
             // 
             // menuPanel
             // 
@@ -91,6 +62,7 @@
             this.menuPanel.Controls.Add(this.radioButton7);
             this.menuPanel.Controls.Add(this.radioButton6);
             this.menuPanel.Controls.Add(this.radioButton5);
+            this.menuPanel.Controls.Add(this.exitButton);
             this.menuPanel.Controls.Add(this.garragesRadioButton);
             this.menuPanel.Controls.Add(this.jobsHistoryRadioButton);
             this.menuPanel.Controls.Add(this.activeJobsRadioButton);
@@ -214,9 +186,9 @@
             // 
             this.newsFeed.BackColor = System.Drawing.SystemColors.ControlLight;
             this.newsFeed.Controls.Add(this.activeJobsPanel);
-            this.newsFeed.Location = new System.Drawing.Point(174, 103);
+            this.newsFeed.Location = new System.Drawing.Point(174, 27);
             this.newsFeed.Name = "newsFeed";
-            this.newsFeed.Size = new System.Drawing.Size(580, 446);
+            this.newsFeed.Size = new System.Drawing.Size(580, 522);
             this.newsFeed.TabIndex = 8;
             this.newsFeed.Visible = false;
             // 
@@ -225,25 +197,24 @@
             this.activeJobsPanel.BackColor = System.Drawing.SystemColors.ControlText;
             this.activeJobsPanel.Location = new System.Drawing.Point(0, 0);
             this.activeJobsPanel.Name = "activeJobsPanel";
-            this.activeJobsPanel.Size = new System.Drawing.Size(580, 446);
+            this.activeJobsPanel.Size = new System.Drawing.Size(580, 535);
             this.activeJobsPanel.TabIndex = 9;
             this.activeJobsPanel.Visible = false;
             // 
             // jobsHistoryPanel
             // 
             this.jobsHistoryPanel.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.jobsHistoryPanel.Location = new System.Drawing.Point(174, 103);
+            this.jobsHistoryPanel.Location = new System.Drawing.Point(174, 27);
             this.jobsHistoryPanel.Name = "jobsHistoryPanel";
-            this.jobsHistoryPanel.Size = new System.Drawing.Size(580, 446);
+            this.jobsHistoryPanel.Size = new System.Drawing.Size(580, 614);
             this.jobsHistoryPanel.TabIndex = 0;
-            this.jobsHistoryPanel.Visible = false;
             this.jobsHistoryPanel.Visible = false;
             // 
             // garagePanel
             // 
             this.garagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.garagePanel.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.garagePanel.Location = new System.Drawing.Point(174, 103);
+            this.garagePanel.Location = new System.Drawing.Point(174, 195);
             this.garagePanel.Name = "garagePanel";
             this.garagePanel.Size = new System.Drawing.Size(580, 446);
             this.garagePanel.TabIndex = 10;
@@ -258,26 +229,17 @@
             this.Controls.Add(this.garagePanel);
             this.Controls.Add(this.newsFeed);
             this.Controls.Add(this.menuPanel);
-            this.Controls.Add(this.registerButton);
-            this.Controls.Add(this.loginButton);
-            this.Controls.Add(this.passwordBox);
-            this.Controls.Add(this.usernameBox);
             this.Name = "InitialWindow";
             this.Text = "Autoservisas";
             this.menuPanel.ResumeLayout(false);
             this.menuPanel.PerformLayout();
             this.newsFeed.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox usernameBox;
-        private System.Windows.Forms.TextBox passwordBox;
-        private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Button registerButton;
+        private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Panel menuPanel;
         private System.Windows.Forms.RadioButton radioButton8;
         private System.Windows.Forms.RadioButton radioButton7;

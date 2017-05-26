@@ -27,15 +27,23 @@ namespace AutoDatabase
             activePanel.Show();
 
             discountsList = new List<Discount>()
-            { 
+            {
                 new Discount() { Title = "Nuolaida padangoms!",
                                  Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
                                  Code = "padangos147852",
-                                 ExpirationDate = new DateTime(),
+                                 ExpirationDate = new DateTime().AddDays(100),
                                  LimitedUse = false,
                                  Percentage = 15,
                                  PictureName = "NuolaidaPadangoms.jpg",
-                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))}
+                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))},
+                new Discount() { Title = "Nuolaida tepalams!",
+                                 Text = "Automobilio tepalų pakeitimas pigiau, nei ankščiau!",
+                                 Code = "tepalas145879",
+                                 ExpirationDate = (new DateTime()).AddDays(100),
+                                 LimitedUse = false,
+                                 Percentage = 5,
+                                 PictureName = "NuolaidaTepalams.jpg",
+                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaTepalams.jpg"))}
             };
 
 
