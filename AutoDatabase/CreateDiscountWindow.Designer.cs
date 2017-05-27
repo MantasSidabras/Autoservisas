@@ -41,6 +41,7 @@
             this.discountDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.discountDescriptionLabel = new System.Windows.Forms.Label();
             this.saveDiscountButton = new System.Windows.Forms.Button();
+            this.fileExplorer = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // discountNameTextLabel
@@ -116,6 +117,7 @@
             this.addDiscountPictureButton.TabIndex = 8;
             this.addDiscountPictureButton.Text = "Pridėti paveiksliuką";
             this.addDiscountPictureButton.UseVisualStyleBackColor = true;
+            this.addDiscountPictureButton.Click += new System.EventHandler(this.addDiscountPictureButton_Click);
             // 
             // filePathLabel
             // 
@@ -192,5 +194,6 @@
         private System.Windows.Forms.TextBox discountDescriptionTextBox;
         private System.Windows.Forms.Label discountDescriptionLabel;
         private System.Windows.Forms.Button saveDiscountButton;
+        private System.Windows.Forms.OpenFileDialog fileExplorer;
     }
 }

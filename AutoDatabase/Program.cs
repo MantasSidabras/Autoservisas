@@ -16,7 +16,7 @@ namespace AutoDatabase
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new InitialWindow());
+			Application.Run(new MainForm());
 		}
 	}
 }
