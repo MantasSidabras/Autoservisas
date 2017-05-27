@@ -8,10 +8,8 @@
   <EntityContainer Name="AutoShopModelStoreContainer">
     <EntitySet Name="Cars" EntityType="AutoShopModel.Store.Cars" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Clients" EntityType="AutoShopModel.Store.Clients" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Companies" EntityType="AutoShopModel.Store.Companies" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Employees" EntityType="AutoShopModel.Store.Employees" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Jobs" EntityType="AutoShopModel.Store.Jobs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="People" EntityType="AutoShopModel.Store.People" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Services" EntityType="AutoShopModel.Store.Services" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Garages" EntityType="AutoShopModel.Store.Garages" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Reviews" EntityType="AutoShopModel.Store.Reviews" store:Type="Tables" Schema="dbo" />
@@ -27,14 +25,6 @@
     <AssociationSet Name="FK_Job_ToCar" Association="AutoShopModel.Store.FK_Job_ToCar">
       <End Role="Car" EntitySet="Cars" />
       <End Role="Job" EntitySet="Jobs" />
-    </AssociationSet>
-    <AssociationSet Name="Id_Company" Association="AutoShopModel.Store.Id_Company">
-      <End Role="Client" EntitySet="Clients" />
-      <End Role="Company" EntitySet="Companies" />
-    </AssociationSet>
-    <AssociationSet Name="Id_Person" Association="AutoShopModel.Store.Id_Person">
-      <End Role="Client" EntitySet="Clients" />
-      <End Role="Person" EntitySet="People" />
     </AssociationSet>
     <AssociationSet Name="Service_Id_Job" Association="AutoShopModel.Store.Service_Id_Job">
       <End Role="Service" EntitySet="Services" />
@@ -102,15 +92,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Adress" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Telephone" Type="nvarchar" Nullable="false" MaxLength="30" />
-    <Property Name="User_Id" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Companies">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsCompany" Type="bit" Nullable="false" DefaultValue="false" />
   </EntityType>
   <EntityType Name="Employees">
     <Key>
@@ -131,14 +116,6 @@
     <Property Name="Start" Type="datetime" Nullable="false" />
     <Property Name="Hours" Type="float" Nullable="true" />
     <Property Name="Finished" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="People">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Services">
     <Key>
@@ -192,6 +169,7 @@
     <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="false" />
     <Property Name="IsAdmin" Type="bit" Nullable="false" DefaultValue="false" />
+    <Property Name="Client_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Job_Distribution">
     <Key>
@@ -238,30 +216,6 @@
       </Principal>
       <Dependent Role="Job">
         <PropertyRef Name="Car_VIN" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Id_Company">
-    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
-    <End Role="Company" Type="AutoShopModel.Store.Companies" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Company">
-        <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Id_Person">
-    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
-    <End Role="Person" Type="AutoShopModel.Store.People" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Client">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Person">
-        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -314,14 +268,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="UserClient">
-    <End Role="User" Type="AutoShopModel.Store.Users" Multiplicity="0..1" />
-    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="*" />
+    <End Role="User" Type="AutoShopModel.Store.Users" Multiplicity="*" />
+    <End Role="Client" Type="AutoShopModel.Store.Clients" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="User">
+      <Principal Role="Client">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Client">
-        <PropertyRef Name="User_Id" />
+      <Dependent Role="User">
+        <PropertyRef Name="Client_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -425,19 +379,12 @@
           <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cars" Relationship="Self.Client_Id_Car" FromRole="Client" ToRole="Car" />
-          <NavigationProperty Name="Company" Relationship="Self.Id_Company" FromRole="Client" ToRole="Company" />
-          <NavigationProperty Name="Person" Relationship="Self.Id_Person" FromRole="Client" ToRole="Person" />
           <NavigationProperty Name="Garages" Relationship="AutoShopModel.GarageClient" FromRole="Client" ToRole="Garage" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Surname" Type="String" Nullable="true" />
+          <Property Name="Code" Type="String" Nullable="true" />
+          <Property Name="IsCompany" Type="Boolean" Nullable="false" DefaultValue="False" />
           <NavigationProperty Name="User" Relationship="AutoShopModel.UserClient" FromRole="Client" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Company">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.Id_Company" FromRole="Company" ToRole="Client" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -463,15 +410,6 @@
           <NavigationProperty Name="Car" Relationship="Self.FK_Job_ToCar" FromRole="Job" ToRole="Car" />
           <NavigationProperty Name="Service" Relationship="Self.Service_Id_Job" FromRole="Job" ToRole="Service" />
           <NavigationProperty Name="Employees" Relationship="Self.Job_Distribution" FromRole="Job" ToRole="Employee" />
-        </EntityType>
-        <EntityType Name="Person">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.Id_Person" FromRole="Person" ToRole="Client" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
@@ -510,30 +448,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Id_Company">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Company">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Id_Person">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Person">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Service_Id_Job">
           <End Role="Service" Type="Self.Service" Multiplicity="1" />
           <End Role="Job" Type="Self.Job" Multiplicity="*" />
@@ -553,10 +467,8 @@
         <EntityContainer Name="AutoShopEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="Companies" EntityType="Self.Company" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
           <EntitySet Name="Jobs" EntityType="Self.Job" />
-          <EntitySet Name="People" EntityType="Self.Person" />
           <EntitySet Name="Services" EntityType="Self.Service" />
           <AssociationSet Name="Client_Id_Car" Association="Self.Client_Id_Car">
             <End Role="Client" EntitySet="Clients" />
@@ -565,14 +477,6 @@
           <AssociationSet Name="FK_Job_ToCar" Association="Self.FK_Job_ToCar">
             <End Role="Car" EntitySet="Cars" />
             <End Role="Job" EntitySet="Jobs" />
-          </AssociationSet>
-          <AssociationSet Name="Id_Company" Association="Self.Id_Company">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Company" EntitySet="Companies" />
-          </AssociationSet>
-          <AssociationSet Name="Id_Person" Association="Self.Id_Person">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Person" EntitySet="People" />
           </AssociationSet>
           <AssociationSet Name="Service_Id_Job" Association="Self.Service_Id_Job">
             <End Role="Service" EntitySet="Services" />
@@ -707,7 +611,7 @@
         </EntityType>
         <Association Name="UserClient">
           <End Type="AutoShopModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="AutoShopModel.Client" Role="Client" Multiplicity="0..1" />
+          <End Type="AutoShopModel.Client" Role="Client" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -736,15 +640,10 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Adress" ColumnName="Adress" />
           <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Companies">
-      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Company)">
-        <MappingFragment StoreEntitySet="Companies">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
           <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="IsCompany" ColumnName="IsCompany" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -767,15 +666,6 @@
           <ScalarProperty Name="Start" ColumnName="Start" />
           <ScalarProperty Name="Hours" ColumnName="Hours" />
           <ScalarProperty Name="Finished" ColumnName="Finished" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="People">
-      <EntityTypeMapping TypeName="IsTypeOf(AutoShopModel.Person)">
-        <MappingFragment StoreEntitySet="People">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Surname" ColumnName="Surname" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -861,14 +751,13 @@
         <ScalarProperty Name="Id" ColumnName="Services_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="UserClient" TypeName="AutoShopModel.UserClient" StoreEntitySet="Clients">
-      <EndProperty Name="User">
-        <ScalarProperty Name="Id" ColumnName="User_Id" />
-      </EndProperty>
+    <AssociationSetMapping Name="UserClient" TypeName="AutoShopModel.UserClient" StoreEntitySet="Users">
       <EndProperty Name="Client">
+        <ScalarProperty Name="Id" ColumnName="Client_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
-      <Condition ColumnName="User_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/27/2017 15:04:42
+-- Date Created: 05/27/2017 15:57:54
 -- Generated from EDMX file: C:\Users\Matas\Desktop\Autoservisas\AutoDatabase\AutoModel.edmx
 -- --------------------------------------------------
 
@@ -22,12 +22,6 @@ IF OBJECT_ID(N'[dbo].[FK_Client_Id_Car]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_Job_ToCar]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Job_ToCar];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Id_Company]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Companies] DROP CONSTRAINT [FK_Id_Company];
-GO
-IF OBJECT_ID(N'[dbo].[FK_Id_Person]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[People] DROP CONSTRAINT [FK_Id_Person];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Service_Id_Job]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Jobs] DROP CONSTRAINT [FK_Service_Id_Job];
@@ -73,17 +67,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Clients]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Clients];
 GO
-IF OBJECT_ID(N'[dbo].[Companies]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Companies];
-GO
 IF OBJECT_ID(N'[dbo].[Employees]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Employees];
 GO
 IF OBJECT_ID(N'[dbo].[Jobs]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Jobs];
-GO
-IF OBJECT_ID(N'[dbo].[People]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[People];
 GO
 IF OBJECT_ID(N'[dbo].[Services]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Services];
@@ -133,15 +121,10 @@ CREATE TABLE [dbo].[Clients] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Adress] nvarchar(50)  NOT NULL,
     [Telephone] nvarchar(30)  NOT NULL,
-    [User_Id] int  NULL
-);
-GO
-
--- Creating table 'Companies'
-CREATE TABLE [dbo].[Companies] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(50)  NOT NULL,
-    [Code] nvarchar(50)  NOT NULL
+    [Name] nvarchar(max)  NOT NULL,
+    [Surname] nvarchar(max)  NULL,
+    [Code] nvarchar(max)  NULL,
+    [IsCompany] bit  NOT NULL
 );
 GO
 
@@ -162,14 +145,6 @@ CREATE TABLE [dbo].[Jobs] (
     [Start] datetime  NOT NULL,
     [Hours] float  NULL,
     [Finished] bit  NOT NULL
-);
-GO
-
--- Creating table 'People'
-CREATE TABLE [dbo].[People] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(50)  NOT NULL,
-    [Surname] nvarchar(50)  NOT NULL
 );
 GO
 
@@ -222,7 +197,8 @@ CREATE TABLE [dbo].[Users] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Username] nvarchar(max)  NOT NULL,
     [PasswordHash] nvarchar(max)  NOT NULL,
-    [IsAdmin] bit  NOT NULL
+    [IsAdmin] bit  NOT NULL,
+    [Client_Id] int  NOT NULL
 );
 GO
 
@@ -263,12 +239,6 @@ ADD CONSTRAINT [PK_Clients]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Companies'
-ALTER TABLE [dbo].[Companies]
-ADD CONSTRAINT [PK_Companies]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'Employees'
 ALTER TABLE [dbo].[Employees]
 ADD CONSTRAINT [PK_Employees]
@@ -278,12 +248,6 @@ GO
 -- Creating primary key on [Id] in table 'Jobs'
 ALTER TABLE [dbo].[Jobs]
 ADD CONSTRAINT [PK_Jobs]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'People'
-ALTER TABLE [dbo].[People]
-ADD CONSTRAINT [PK_People]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -367,24 +331,6 @@ GO
 CREATE INDEX [IX_FK_Job_ToCar]
 ON [dbo].[Jobs]
     ([Car_VIN]);
-GO
-
--- Creating foreign key on [Id] in table 'Companies'
-ALTER TABLE [dbo].[Companies]
-ADD CONSTRAINT [FK_Id_Company]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Clients]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'People'
-ALTER TABLE [dbo].[People]
-ADD CONSTRAINT [FK_Id_Person]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Clients]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [Service_Id] in table 'Jobs'
@@ -519,19 +465,19 @@ ON [dbo].[DiscountService]
     ([Services_Id]);
 GO
 
--- Creating foreign key on [User_Id] in table 'Clients'
-ALTER TABLE [dbo].[Clients]
+-- Creating foreign key on [Client_Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
 ADD CONSTRAINT [FK_UserClient]
-    FOREIGN KEY ([User_Id])
-    REFERENCES [dbo].[Users]
+    FOREIGN KEY ([Client_Id])
+    REFERENCES [dbo].[Clients]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserClient'
 CREATE INDEX [IX_FK_UserClient]
-ON [dbo].[Clients]
-    ([User_Id]);
+ON [dbo].[Users]
+    ([Client_Id]);
 GO
 
 -- --------------------------------------------------

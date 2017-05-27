@@ -17,6 +17,7 @@ namespace AutoDatabase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.IsCompany = false;
             this.Cars = new HashSet<Car>();
             this.Garages = new HashSet<Garage>();
         }
@@ -24,11 +25,13 @@ namespace AutoDatabase
         public int Id { get; set; }
         public string Adress { get; set; }
         public string Telephone { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Code { get; set; }
+        public bool IsCompany { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Car> Cars { get; set; }
-        public virtual Company Company { get; set; }
-        public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Garage> Garages { get; set; }
         public virtual User User { get; set; }

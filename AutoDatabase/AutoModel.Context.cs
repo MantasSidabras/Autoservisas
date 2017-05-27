@@ -27,10 +27,8 @@ namespace AutoDatabase
     
         public virtual DbSet<Car> Cars { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Job> Jobs { get; set; }
-        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<Garage> Garages { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
