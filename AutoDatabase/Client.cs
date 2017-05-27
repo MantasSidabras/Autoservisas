@@ -31,5 +31,6 @@ namespace AutoDatabase
         public virtual Person Person { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Garage> Garages { get; set; }
+        public virtual User User { get; set; }
     }
 }

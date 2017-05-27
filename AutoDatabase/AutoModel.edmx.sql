@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/25/2017 20:58:48
+-- Date Created: 05/25/2017 21:25:41
 -- Generated from EDMX file: C:\Users\Matas\Desktop\Autoservisas\AutoDatabase\AutoModel.edmx
 -- --------------------------------------------------
 
@@ -126,7 +126,8 @@ GO
 CREATE TABLE [dbo].[Clients] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Adress] nvarchar(50)  NOT NULL,
-    [Telephone] nvarchar(30)  NOT NULL
+    [Telephone] nvarchar(30)  NOT NULL,
+    [User_Id] int  NULL
 );
 GO
 
@@ -207,6 +208,15 @@ CREATE TABLE [dbo].[Discounts] (
     [LimitedUse] bit  NOT NULL,
     [ExpirationDate] datetime  NOT NULL,
     [PictureName] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'Users'
+CREATE TABLE [dbo].[Users] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Username] nvarchar(max)  NOT NULL,
+    [PasswordHash] nvarchar(max)  NOT NULL,
+    [IsAdmin] bit  NOT NULL
 );
 GO
 
@@ -292,6 +302,12 @@ GO
 -- Creating primary key on [Id] in table 'Discounts'
 ALTER TABLE [dbo].[Discounts]
 ADD CONSTRAINT [PK_Discounts]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Users'
+ALTER TABLE [dbo].[Users]
+ADD CONSTRAINT [PK_Users]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -495,6 +511,21 @@ GO
 CREATE INDEX [IX_FK_DiscountService_Service]
 ON [dbo].[DiscountService]
     ([Services_Id]);
+GO
+
+-- Creating foreign key on [User_Id] in table 'Clients'
+ALTER TABLE [dbo].[Clients]
+ADD CONSTRAINT [FK_UserClient]
+    FOREIGN KEY ([User_Id])
+    REFERENCES [dbo].[Users]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserClient'
+CREATE INDEX [IX_FK_UserClient]
+ON [dbo].[Clients]
+    ([User_Id]);
 GO
 
 -- --------------------------------------------------

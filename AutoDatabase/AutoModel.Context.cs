@@ -35,5 +35,6 @@ namespace AutoDatabase
         public virtual DbSet<Garage> Garages { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
