@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/25/2017 21:25:41
+-- Date Created: 05/27/2017 15:04:42
 -- Generated from EDMX file: C:\Users\Matas\Desktop\Autoservisas\AutoDatabase\AutoModel.edmx
 -- --------------------------------------------------
 
@@ -59,6 +59,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_DiscountService_Service]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[DiscountService] DROP CONSTRAINT [FK_DiscountService_Service];
 GO
+IF OBJECT_ID(N'[dbo].[FK_UserClient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Clients] DROP CONSTRAINT [FK_UserClient];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -93,6 +96,9 @@ IF OBJECT_ID(N'[dbo].[Reviews]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Discounts]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Discounts];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
 GO
 IF OBJECT_ID(N'[dbo].[Job_Distribution]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Job_Distribution];
@@ -133,7 +139,7 @@ GO
 
 -- Creating table 'Companies'
 CREATE TABLE [dbo].[Companies] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Code] nvarchar(50)  NOT NULL
 );
@@ -161,7 +167,7 @@ GO
 
 -- Creating table 'People'
 CREATE TABLE [dbo].[People] (
-    [Id] int  NOT NULL,
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(50)  NOT NULL,
     [Surname] nvarchar(50)  NOT NULL
 );
