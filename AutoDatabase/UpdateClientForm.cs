@@ -15,8 +15,6 @@ namespace AutoDatabase
         DataController data;
         int clientId;
         Client client = null;
-        Person person = null;
-        Company company = null;
 
         public bool isPerson = false;
         public UpdateClientForm(object id)
@@ -29,34 +27,32 @@ namespace AutoDatabase
         {
             data = new DataController();
             client = data.findClient(clientId);
-            if (data.isPerson(clientId))
+            if (!client.IsCompany)
             {
                 textClient1.Text = "Vardas";
                 textClient2.Text = "Pavarde";
                 client = data.findClient(clientId);
-                person = data.findPerson(clientId);
-            }else if (data.isCompany(clientId))
+            }else if (client.IsCompany)
             {
                 textClient1.Text = "Pavadinimas";
                 textClient2.Text = "Kodas";
                 client = data.findClient(clientId);
-                company = data.findCompany(clientId);
             }
             fillTextFields();
         }
 
         private void fillTextFields()
         {
-            if (data.isPerson(clientId))
+            if (!client.IsCompany)
             {
-                textBoxClientName.Text = person.Name;
-                textBoxClientSurname.Text = person.Surname;
+                textBoxClientName.Text = client.Name;
+                textBoxClientSurname.Text = client.Surname;
                 textBoxAddress.Text = client.Adress;
                 textBoxTelephone.Text = client.Telephone;
-            }else if (data.isCompany(clientId))
+            }else if (client.IsCompany)
             {
-                textBoxClientName.Text = company.Name;
-                textBoxClientSurname.Text =company.Code;
+                textBoxClientName.Text = client.Name;
+                textBoxClientSurname.Text = client.Code;
                 textBoxAddress.Text = client.Adress;
                 textBoxTelephone.Text = client.Telephone;
             }

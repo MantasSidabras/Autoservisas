@@ -53,6 +53,7 @@ namespace AutoDatabase
                 {
                     context.Clients.Add((Client)element);
                 }
+                /* no longer exist
                 if (type == typeof(Company))
                 {
                     context.Companies.Add((Company)element);
@@ -61,6 +62,7 @@ namespace AutoDatabase
                 {
                     context.People.Add((Person)element);
                 }
+                */
                 context.SaveChanges();
             }
         }
@@ -135,8 +137,8 @@ namespace AutoDatabase
             using (var context = new AutoShopEntities())
             {
                 var result = (from cl in context.Clients
-                              where cl.Person.Surname.Contains(str) || cl.Person.Name.Contains(str) || cl.Company.Name.Contains(str)
-                              select new { Name = cl.Person.Name + " " + cl.Person.Surname + cl.Company.Name, Id = cl.Id}).ToList<dynamic>();
+                              where cl.Surname.Contains(str) || cl.Name.Contains(str)
+                              select new { Name = cl.Name + " " + cl.Surname , Id = cl.Id}).ToList<dynamic>();
                 return result;
             }
         }
@@ -149,7 +151,8 @@ namespace AutoDatabase
                 return result;
             }
         }
-
+        // Person table no longer Exists
+        /*
         public Person findPerson(int id)
         {
             using (var context = new AutoShopEntities())
@@ -157,8 +160,9 @@ namespace AutoDatabase
                 Person result = context.People.FirstOrDefault(x => x.Id == id);
                 return result;
             }
-        }
-
+        }*/
+        // Company table no longer exists
+        /*
         public Company findCompany(int id)
         {
             using (var context = new AutoShopEntities())
@@ -166,8 +170,10 @@ namespace AutoDatabase
                 Company result = context.Companies.FirstOrDefault(x => x.Id == id);
                 return result;
             }
-        }
+        }*/
 
+        // Depricated
+        /*
         public void updateClient(int id, String address, String phone)
         {
             using (var context = new AutoShopEntities())
@@ -178,7 +184,9 @@ namespace AutoDatabase
                 context.SaveChanges();
             }
         }
-
+        */
+        // No longer exists
+        /*
         public void updatePerson(int id, String name, String surname)
         {
             using (var context = new AutoShopEntities())
@@ -188,8 +196,9 @@ namespace AutoDatabase
                 result.Surname = surname;
                 context.SaveChanges();
             }
-        }
-
+        } */
+        // No longer exists
+        /*
         public void updateCompany(int id, String name, String code)
         {
             using (var context = new AutoShopEntities())
@@ -200,20 +209,28 @@ namespace AutoDatabase
                 context.SaveChanges();
             }
         }
-
+        */
         public void updateClientData(int id, String name, String surname, String code, String address, String phone)
         {
-            updateClient(id, address, phone);
-            if (isPerson(id))
+            using (var context = new AutoShopEntities())
             {
-                updatePerson(id, name, surname);
-            }
-            else if (isCompany(id))
-            {
-                updateCompany(id, name, code);
+                Client result = context.Clients.FirstOrDefault(x => x.Id == id);
+                result.Adress = address;
+                result.Telephone = phone;
+                result.Name = name;
+                if (result.IsCompany)
+                {
+                    result.Code = code;
+                }
+                else
+                {
+                    result.Surname = surname;
+                } 
+                context.SaveChanges();
             }
         }
-
+        // no longer needed
+        /*
         public bool isPerson(int id)
         {
             using (var context = new AutoShopEntities())
@@ -226,8 +243,9 @@ namespace AutoDatabase
                 else return false;
             }
         }
-
-
+        */
+        // no longer needed
+        /*
         public bool isCompany(int id)
         {
             using (var context = new AutoShopEntities())
@@ -239,14 +257,15 @@ namespace AutoDatabase
                 }
                 else return false;
             }
-        }
+        }*/
+
         public void PopulateTopClients(ListBox listBoxTopClients)
 		{
 			using (var context = new AutoShopEntities())
 			{
-				var results = (from c in context.People
-							   orderby c.Client.Cars.Count() descending
-							   select new { Id = c.Id, Row = c.Name + "    " + c.Surname + "  " + c.Client.Cars.Count() }).ToList().Take(5);
+				var results = (from c in context.Clients
+							   orderby c.Cars.Count() descending
+							   select new { Id = c.Id, Row = c.Name + "    " + c.Surname + "  " + c.Cars.Count() }).ToList().Take(5);
 
 				listBoxTopClients.DataSource = results.ToList();
 				listBoxTopClients.DisplayMember = "Row";
@@ -260,8 +279,9 @@ namespace AutoDatabase
 			{
 				using (var context = new AutoShopEntities())
 				{
-					var results = (from c in context.People
-								   select new { Id = c.Id, Row = c.Name + " " + c.Surname }).ToList();
+					var results = (from c in context.Clients
+                                   where c.IsCompany == false
+                                   select new { Id = c.Id, Row = c.Name + " " + c.Surname }).ToList();
 
 					listBoxClients.DataSource = results;
 					listBoxClients.DisplayMember = "Row";
@@ -273,7 +293,8 @@ namespace AutoDatabase
 			{
 				using (var context = new AutoShopEntities())
 				{
-					var results = (from c in context.Companies
+					var results = (from c in context.Clients
+                                   where c.IsCompany == true
 								   select new { Id = c.Id, Row = c.Name + " " + c.Code }).ToList();
 
 					listBoxClients.DataSource = results;
@@ -359,28 +380,17 @@ namespace AutoDatabase
 			var client = new Client
 			{
 				Adress = address,
-				Telephone = telephone
-			};
+				Telephone = telephone,
+                Name = s1
+        };
 
 			if (isPerson)
 			{
-				var person = new Person
-				{
-					Id = client.Id,
-					Name = s1,
-					Surname = s2
-				};
-				client.Person = person;
+                client.Surname = s2;
 			}
 			else
 			{
-				var company = new Company
-				{
-					Id = client.Id,
-					Name = s1,
-					Code = s2
-				};
-				client.Company = company;
+                client.Code = s2;
 			}
 
 			using (var context = new AutoShopEntities())
