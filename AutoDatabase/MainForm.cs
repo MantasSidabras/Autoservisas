@@ -31,7 +31,8 @@ namespace AutoDatabase
             populateClientsListBox();
             populateJobsListBox();
             populateJobEmployeesListBox();
-		}
+            this.comboBoxClientType.SelectedIndex = 1;
+        }
 
         private void populateCarsListBox()
         {
