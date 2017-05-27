@@ -380,5 +380,10 @@ namespace AutoDatabase
         {
             MessageBox.Show("Prototipas");
         }
+
+        private void addDiscountButton_Click(object sender, EventArgs e)
+        {
+            new CreateDiscountWindow().ShowDialog();
+        }
     }
 }

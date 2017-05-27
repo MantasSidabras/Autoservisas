@@ -17,8 +17,10 @@ namespace AutoDatabase
             InitializeComponent();
             titleLabel.Text = discount.Title;
             discountCodeLabel.Text = discount.Code;
+            discountExpirationDateLabel.Text = string.Format("{0:yyyy-MM-dd}", discount.ExpirationDate);
             discountTextBox.Text = discount.Text;
             discountPictureBox.Image = discount.Picture;
+            
         }
     }
 }

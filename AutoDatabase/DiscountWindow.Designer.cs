@@ -33,6 +33,8 @@
             this.discountTextLabel = new System.Windows.Forms.Label();
             this.discountCodeLabel = new System.Windows.Forms.Label();
             this.discountTextBox = new System.Windows.Forms.TextBox();
+            this.expirationDateTextLabel = new System.Windows.Forms.Label();
+            this.discountExpirationDateLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.discountPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,7 +79,7 @@
             // discountTextBox
             // 
             this.discountTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.discountTextBox.Location = new System.Drawing.Point(122, 306);
+            this.discountTextBox.Location = new System.Drawing.Point(122, 354);
             this.discountTextBox.Multiline = true;
             this.discountTextBox.Name = "discountTextBox";
             this.discountTextBox.ReadOnly = true;
@@ -87,17 +89,40 @@
             this.discountTextBox.TabIndex = 4;
             this.discountTextBox.TabStop = false;
             // 
+            // expirationDateTextLabel
+            // 
+            this.expirationDateTextLabel.AutoSize = true;
+            this.expirationDateTextLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.expirationDateTextLabel.Location = new System.Drawing.Point(119, 313);
+            this.expirationDateTextLabel.Name = "expirationDateTextLabel";
+            this.expirationDateTextLabel.Size = new System.Drawing.Size(76, 20);
+            this.expirationDateTextLabel.TabIndex = 6;
+            this.expirationDateTextLabel.Text = "galioja iki:";
+            // 
+            // discountExpirationDateLabel
+            // 
+            this.discountExpirationDateLabel.AutoSize = true;
+            this.discountExpirationDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discountExpirationDateLabel.Location = new System.Drawing.Point(279, 310);
+            this.discountExpirationDateLabel.Name = "discountExpirationDateLabel";
+            this.discountExpirationDateLabel.Size = new System.Drawing.Size(122, 24);
+            this.discountExpirationDateLabel.TabIndex = 7;
+            this.discountExpirationDateLabel.Text = "amazing date";
+            // 
             // DiscountWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.discountExpirationDateLabel);
+            this.Controls.Add(this.expirationDateTextLabel);
             this.Controls.Add(this.discountTextBox);
             this.Controls.Add(this.discountCodeLabel);
             this.Controls.Add(this.discountTextLabel);
             this.Controls.Add(this.discountPictureBox);
             this.Controls.Add(this.titleLabel);
             this.Name = "DiscountWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "discountPictureBox";
             ((System.ComponentModel.ISupportInitialize)(this.discountPictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -112,5 +137,7 @@
         private System.Windows.Forms.Label discountTextLabel;
         private System.Windows.Forms.Label discountCodeLabel;
         private System.Windows.Forms.TextBox discountTextBox;
+        private System.Windows.Forms.Label expirationDateTextLabel;
+        protected System.Windows.Forms.Label discountExpirationDateLabel;
     }
 }

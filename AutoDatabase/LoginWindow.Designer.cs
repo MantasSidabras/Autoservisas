@@ -70,7 +70,6 @@
             this.loginButton.TabIndex = 2;
             this.loginButton.Text = "Prisijungti";
             this.loginButton.UseVisualStyleBackColor = true;
-//            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // LoginWindow
             // 
@@ -82,6 +81,7 @@
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.titleLabel);
             this.Name = "LoginWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mechanikas";
             this.ResumeLayout(false);
             this.PerformLayout();

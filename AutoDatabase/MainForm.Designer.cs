@@ -92,14 +92,19 @@
             this.buttonGenerateBill = new System.Windows.Forms.Button();
             this.labelKlientaiGen = new System.Windows.Forms.Label();
             this.listBoxGeneratorClients = new System.Windows.Forms.ListBox();
+            this.newsFeed = new System.Windows.Forms.TabPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.NewsFeed = new System.Windows.Forms.TabPage();
+            this.discountsListBox = new System.Windows.Forms.ListBox();
+            this.discountTextLabel = new System.Windows.Forms.Label();
+            this.addDiscountButton = new System.Windows.Forms.Button();
+            this.deleteDiscountButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.RegistrateClientTab.SuspendLayout();
             this.JobsTab.SuspendLayout();
             this.dataControllerTab.SuspendLayout();
             this.SystemLogTab.SuspendLayout();
             this.tabGenerator.SuspendLayout();
+            this.newsFeed.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,11 +118,11 @@
             this.tabControl.Controls.Add(this.dataControllerTab);
             this.tabControl.Controls.Add(this.SystemLogTab);
             this.tabControl.Controls.Add(this.tabGenerator);
-            this.tabControl.Controls.Add(this.NewsFeed);
+            this.tabControl.Controls.Add(this.newsFeed);
             this.tabControl.Location = new System.Drawing.Point(-1, 1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(808, 507);
+            this.tabControl.Size = new System.Drawing.Size(773, 548);
             this.tabControl.TabIndex = 0;
             // 
             // RegistrateClientTab
@@ -154,7 +159,7 @@
             this.RegistrateClientTab.Location = new System.Drawing.Point(4, 22);
             this.RegistrateClientTab.Name = "RegistrateClientTab";
             this.RegistrateClientTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RegistrateClientTab.Size = new System.Drawing.Size(800, 481);
+            this.RegistrateClientTab.Size = new System.Drawing.Size(765, 522);
             this.RegistrateClientTab.TabIndex = 0;
             this.RegistrateClientTab.Text = "Registruoti klientą";
             this.RegistrateClientTab.UseVisualStyleBackColor = true;
@@ -459,7 +464,7 @@
             this.JobsTab.Location = new System.Drawing.Point(4, 22);
             this.JobsTab.Name = "JobsTab";
             this.JobsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.JobsTab.Size = new System.Drawing.Size(800, 481);
+            this.JobsTab.Size = new System.Drawing.Size(765, 522);
             this.JobsTab.TabIndex = 9;
             this.JobsTab.Text = "Darbai";
             this.JobsTab.UseVisualStyleBackColor = true;
@@ -614,7 +619,7 @@
             this.dataControllerTab.Location = new System.Drawing.Point(4, 22);
             this.dataControllerTab.Name = "dataControllerTab";
             this.dataControllerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dataControllerTab.Size = new System.Drawing.Size(800, 481);
+            this.dataControllerTab.Size = new System.Drawing.Size(765, 522);
             this.dataControllerTab.TabIndex = 7;
             this.dataControllerTab.Text = "Duomenų valdyklė";
             this.dataControllerTab.UseVisualStyleBackColor = true;
@@ -708,7 +713,7 @@
             this.SystemLogTab.Location = new System.Drawing.Point(4, 22);
             this.SystemLogTab.Name = "SystemLogTab";
             this.SystemLogTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SystemLogTab.Size = new System.Drawing.Size(800, 481);
+            this.SystemLogTab.Size = new System.Drawing.Size(765, 522);
             this.SystemLogTab.TabIndex = 10;
             this.SystemLogTab.Text = "Sistemos žurnalas";
             this.SystemLogTab.UseVisualStyleBackColor = true;
@@ -732,7 +737,7 @@
             this.tabGenerator.Controls.Add(this.listBoxGeneratorClients);
             this.tabGenerator.Location = new System.Drawing.Point(4, 22);
             this.tabGenerator.Name = "tabGenerator";
-            this.tabGenerator.Size = new System.Drawing.Size(800, 481);
+            this.tabGenerator.Size = new System.Drawing.Size(765, 522);
             this.tabGenerator.TabIndex = 11;
             this.tabGenerator.Text = "Dokumentų generatorius";
             this.tabGenerator.UseVisualStyleBackColor = true;
@@ -786,28 +791,69 @@
             this.listBoxGeneratorClients.TabIndex = 0;
             this.listBoxGeneratorClients.ValueMember = "Id";
             // 
+            // newsFeed
+            // 
+            this.newsFeed.AccessibleName = "";
+            this.newsFeed.Controls.Add(this.deleteDiscountButton);
+            this.newsFeed.Controls.Add(this.addDiscountButton);
+            this.newsFeed.Controls.Add(this.discountTextLabel);
+            this.newsFeed.Controls.Add(this.discountsListBox);
+            this.newsFeed.Location = new System.Drawing.Point(4, 22);
+            this.newsFeed.Name = "newsFeed";
+            this.newsFeed.Padding = new System.Windows.Forms.Padding(3);
+            this.newsFeed.Size = new System.Drawing.Size(765, 522);
+            this.newsFeed.TabIndex = 12;
+            this.newsFeed.Text = "naujienos ir nuolaidos";
+            this.newsFeed.UseVisualStyleBackColor = true;
+            // 
             // errorProvider
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // NewsFeed
+            // discountsListBox
             // 
-            this.NewsFeed.AccessibleName = "";
-            this.NewsFeed.Location = new System.Drawing.Point(4, 22);
-            this.NewsFeed.Name = "NewsFeed";
-            this.NewsFeed.Padding = new System.Windows.Forms.Padding(3);
-            this.NewsFeed.Size = new System.Drawing.Size(800, 481);
-            this.NewsFeed.TabIndex = 12;
-            this.NewsFeed.Text = "Naujienos ir nuolaidos";
-            this.NewsFeed.UseVisualStyleBackColor = true;
+            this.discountsListBox.FormattingEnabled = true;
+            this.discountsListBox.Location = new System.Drawing.Point(66, 49);
+            this.discountsListBox.Name = "discountsListBox";
+            this.discountsListBox.Size = new System.Drawing.Size(228, 342);
+            this.discountsListBox.TabIndex = 0;
+            // 
+            // discountTextLabel
+            // 
+            this.discountTextLabel.AutoSize = true;
+            this.discountTextLabel.Location = new System.Drawing.Point(156, 22);
+            this.discountTextLabel.Name = "discountTextLabel";
+            this.discountTextLabel.Size = new System.Drawing.Size(54, 13);
+            this.discountTextLabel.TabIndex = 1;
+            this.discountTextLabel.Text = "Nuolaidos";
+            // 
+            // addDiscountButton
+            // 
+            this.addDiscountButton.Location = new System.Drawing.Point(353, 49);
+            this.addDiscountButton.Name = "addDiscountButton";
+            this.addDiscountButton.Size = new System.Drawing.Size(177, 46);
+            this.addDiscountButton.TabIndex = 2;
+            this.addDiscountButton.Text = "Pridėti nuolaidą";
+            this.addDiscountButton.UseVisualStyleBackColor = true;
+            this.addDiscountButton.Click += new System.EventHandler(this.addDiscountButton_Click);
+            // 
+            // deleteDiscountButton
+            // 
+            this.deleteDiscountButton.Location = new System.Drawing.Point(353, 125);
+            this.deleteDiscountButton.Name = "deleteDiscountButton";
+            this.deleteDiscountButton.Size = new System.Drawing.Size(177, 46);
+            this.deleteDiscountButton.TabIndex = 3;
+            this.deleteDiscountButton.Text = "ištrinti nuolaidą";
+            this.deleteDiscountButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 520);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.tabControl);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mechanikas";
             this.tabControl.ResumeLayout(false);
             this.RegistrateClientTab.ResumeLayout(false);
@@ -819,6 +865,8 @@
             this.SystemLogTab.ResumeLayout(false);
             this.tabGenerator.ResumeLayout(false);
             this.tabGenerator.PerformLayout();
+            this.newsFeed.ResumeLayout(false);
+            this.newsFeed.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
@@ -890,7 +938,11 @@
         private System.Windows.Forms.Button buttonGenerateBill;
         private System.Windows.Forms.Label labelKlientaiGen;
         private System.Windows.Forms.ListBox listBoxGeneratorClients;
-        private System.Windows.Forms.TabPage NewsFeed;
+        private System.Windows.Forms.TabPage newsFeed;
+        private System.Windows.Forms.Button deleteDiscountButton;
+        private System.Windows.Forms.Button addDiscountButton;
+        private System.Windows.Forms.Label discountTextLabel;
+        private System.Windows.Forms.ListBox discountsListBox;
     }
 }
 

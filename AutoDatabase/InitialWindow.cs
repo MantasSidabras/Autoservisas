@@ -31,7 +31,7 @@ namespace AutoDatabase
                 new Discount() { Title = "Nuolaida padangoms!",
                                  Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
                                  Code = "padangos147852",
-                                 ExpirationDate = new DateTime().AddDays(100),
+                                 ExpirationDate = DateTime.Now.AddDays(100),
                                  LimitedUse = false,
                                  Percentage = 15,
                                  PictureName = "NuolaidaPadangoms.jpg",
@@ -39,7 +39,7 @@ namespace AutoDatabase
                 new Discount() { Title = "Nuolaida tepalams!",
                                  Text = "Automobilio tepalų pakeitimas pigiau, nei ankščiau!",
                                  Code = "tepalas145879",
-                                 ExpirationDate = (new DateTime()).AddDays(100),
+                                 ExpirationDate = DateTime.Now.AddDays(100),
                                  LimitedUse = false,
                                  Percentage = 5,
                                  PictureName = "NuolaidaTepalams.jpg",
@@ -107,6 +107,12 @@ namespace AutoDatabase
             activePanel.Visible = false;
             activePanel = garagePanel;
             activePanel.Visible = true;
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new LoginWindow().Show();
         }
     }
 }
