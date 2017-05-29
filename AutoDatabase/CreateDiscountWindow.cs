@@ -38,5 +38,65 @@ namespace AutoDatabase
                 }
             }
         }
+
+        private void saveDiscountButton_Click(object sender, EventArgs e)
+        {
+            short perc;
+            short.TryParse(discountPercentageTextBox.Text, out perc);
+            int year;
+            int month;
+            int day;
+
+            int.TryParse(yearTextBox.Text, out year);
+            int.TryParse(monthTextBox.Text, out month);
+            int.TryParse(dayTextBox.Text, out day);
+            string path = Path.Combine(Environment.CurrentDirectory, @"ImagesForDiscounts\", GetFileName(filePathLabel.Text));
+            Image img = new Bitmap(filePathLabel.Text);
+            var imgBytes = ImageToByteArray(img);
+
+            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                fs.Write(imgBytes, 0, imgBytes.Length);
+            }
+
+            var discount = new Discount()
+            {
+                Title = discountNameTextBox.Text,
+                Percentage = perc,
+                ExpirationDate = new DateTime(year, month, day),
+                Text = discountDescriptionTextBox.Text,
+                LimitedUse = false,
+                PictureName = path,
+                Picture = img
+                
+            };
+        }
+
+        private string GetFileName( string path)
+        {
+            string text = string.Empty;
+            int i = path.Length - 1;
+
+            while(path.ElementAt(i) != '\\' && path.ElementAt(i) != '/' && i != 0)
+            {
+                text += path.ElementAt(i);
+                i--;
+            }
+
+            char[] arr = text.ToCharArray();
+            Array.Reverse(arr);
+            return new string(arr);
+        }
+
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+
+
     }
 }

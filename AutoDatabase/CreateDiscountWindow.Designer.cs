@@ -42,6 +42,8 @@
             this.discountDescriptionLabel = new System.Windows.Forms.Label();
             this.saveDiscountButton = new System.Windows.Forms.Button();
             this.fileExplorer = new System.Windows.Forms.OpenFileDialog();
+            this.codeTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // discountNameTextLabel
@@ -153,12 +155,31 @@
             this.saveDiscountButton.TabIndex = 12;
             this.saveDiscountButton.Text = "Išsaugoti";
             this.saveDiscountButton.UseVisualStyleBackColor = true;
+            this.saveDiscountButton.Click += new System.EventHandler(this.saveDiscountButton_Click);
+            // 
+            // codeTextBox
+            // 
+            this.codeTextBox.Location = new System.Drawing.Point(330, 67);
+            this.codeTextBox.Name = "codeTextBox";
+            this.codeTextBox.Size = new System.Drawing.Size(93, 20);
+            this.codeTextBox.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(287, 70);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 13);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Kodas";
             // 
             // CreateDiscountWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(448, 411);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.codeTextBox);
             this.Controls.Add(this.saveDiscountButton);
             this.Controls.Add(this.discountDescriptionLabel);
             this.Controls.Add(this.discountDescriptionTextBox);
@@ -195,5 +216,7 @@
         private System.Windows.Forms.Label discountDescriptionLabel;
         private System.Windows.Forms.Button saveDiscountButton;
         private System.Windows.Forms.OpenFileDialog fileExplorer;
+        private System.Windows.Forms.TextBox codeTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

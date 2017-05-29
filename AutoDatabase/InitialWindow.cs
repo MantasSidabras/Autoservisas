@@ -19,12 +19,14 @@ namespace AutoDatabase
         private Panel activePanel;
         private List<int> bottomlist = new List<int>();
 
-        public InitialWindow()
+        public InitialWindow(List<Discount> discountsList)
         {
             InitializeComponent();
 
             activePanel = newsFeed;
             activePanel.Show();
+
+
 
             discountsList = new List<Discount>()
             {
