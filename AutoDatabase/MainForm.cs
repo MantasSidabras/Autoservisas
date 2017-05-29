@@ -37,6 +37,7 @@ namespace AutoDatabase
 
         private void updateDiscountBox()
         {
+            discountsListBox.Items.Clear();
             using (var context = new AutoShopEntities())
             {
                 discountsListBox.Items.AddRange(context.Discounts.ToArray());
@@ -396,6 +397,11 @@ namespace AutoDatabase
         private void addDiscountButton_Click(object sender, EventArgs e)
         {
             new CreateDiscountWindow().ShowDialog();
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            updateDiscountBox();
         }
     }
 }
