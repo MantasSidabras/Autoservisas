@@ -53,6 +53,8 @@ namespace AutoDatabase
             this.logoutButton = new System.Windows.Forms.Button();
             this.userIndicationLabel = new System.Windows.Forms.Label();
             this.userDetailsLabel = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.activeJobsPanel.SuspendLayout();
             this.usernameLabel = new System.Windows.Forms.Label();
             this.addressLabel = new System.Windows.Forms.Label();
             this.phoneNumberLabel = new System.Windows.Forms.Label();
@@ -77,6 +79,7 @@ namespace AutoDatabase
             // activeJobsPanel
             // 
             this.activeJobsPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.activeJobsPanel.Controls.Add(this.listBox1);
             this.activeJobsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.activeJobsPanel.Location = new System.Drawing.Point(3, 3);
             this.activeJobsPanel.Name = "activeJobsPanel";
@@ -297,6 +300,46 @@ namespace AutoDatabase
             this.userDetailsLabel.TabIndex = 14;
             this.userDetailsLabel.Text = "amazing user";
             // 
+            // listBox1
+            // 
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 24;
+            this.listBox1.Items.AddRange(new object[] {
+            " Padangu keitimas              Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Padangu keitimas              Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01" +
+                "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------"});
+            this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(672, 497);
+            this.listBox1.TabIndex = 1;
+            // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
@@ -340,6 +383,7 @@ namespace AutoDatabase
             this.Padding = new System.Windows.Forms.Padding(0, 50, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autoservisas";
+            this.activeJobsPanel.ResumeLayout(false);
             this.menuTabControl.ResumeLayout(false);
             this.home.ResumeLayout(false);
             this.activeJobs.ResumeLayout(false);
@@ -403,6 +447,7 @@ namespace AutoDatabase
         private Button logoutButton;
         private Label userIndicationLabel;
         private Label userDetailsLabel;
+        private ListBox listBox1;
         private Label label7;
         private Label surnameLabel;
         private Label label5;
