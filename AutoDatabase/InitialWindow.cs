@@ -71,7 +71,11 @@ namespace AutoDatabase
 
         private void UpdateUserProfile()
         {
-            
+            usernameLabel.Text = connectedUser.Username;
+            nameLabel.Text = connectedUser.Client.Name;
+            surnameLabel.Text = connectedUser.Client.Surname;
+            phoneNumberLabel.Text = connectedUser.Client.Telephone;
+            addressLabel.Text = connectedUser.Client.Adress;
         }
 
         private void logoutButton_Click(object sender, EventArgs e)

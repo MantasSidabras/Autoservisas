@@ -34,15 +34,20 @@ namespace AutoDatabase
         {
             this.newsFeed = new System.Windows.Forms.Panel();
             this.activeJobsPanel = new System.Windows.Forms.Panel();
-            this.jobsHistoryPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.garagePanel = new System.Windows.Forms.Panel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.menuTabControl = new System.Windows.Forms.TabControl();
             this.home = new System.Windows.Forms.TabPage();
             this.activeJobs = new System.Windows.Forms.TabPage();
             this.jobsHistory = new System.Windows.Forms.TabPage();
+            this.jobsHistoryPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.garages = new System.Windows.Forms.TabPage();
             this.profile = new System.Windows.Forms.TabPage();
             this.profilePanel = new System.Windows.Forms.Panel();
+            this.phoneNumberLabel = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.surnameLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -53,11 +58,8 @@ namespace AutoDatabase
             this.logoutButton = new System.Windows.Forms.Button();
             this.userIndicationLabel = new System.Windows.Forms.Label();
             this.userDetailsLabel = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.activeJobsPanel.SuspendLayout();
-            this.usernameLabel = new System.Windows.Forms.Label();
-            this.addressLabel = new System.Windows.Forms.Label();
-            this.phoneNumberLabel = new System.Windows.Forms.Label();
+            this.garagePanel.SuspendLayout();
             this.menuTabControl.SuspendLayout();
             this.home.SuspendLayout();
             this.activeJobs.SuspendLayout();
@@ -86,25 +88,74 @@ namespace AutoDatabase
             this.activeJobsPanel.Size = new System.Drawing.Size(672, 497);
             this.activeJobsPanel.TabIndex = 9;
             // 
-            // jobsHistoryPanel
+            // listBox1
             // 
-            this.jobsHistoryPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.jobsHistoryPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.jobsHistoryPanel.Location = new System.Drawing.Point(3, 3);
-            this.jobsHistoryPanel.Name = "jobsHistoryPanel";
-            this.jobsHistoryPanel.Size = new System.Drawing.Size(672, 497);
-            this.jobsHistoryPanel.TabIndex = 0;
+            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 24;
+            this.listBox1.Items.AddRange(new object[] {
+            " Padangu keitimas              Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Padangu keitimas              Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01" +
+                "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------"});
+            this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(672, 497);
+            this.listBox1.TabIndex = 1;
             // 
             // garagePanel
             // 
             this.garagePanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.garagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.garagePanel.Controls.Add(this.listBox2);
             this.garagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.garagePanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.garagePanel.Location = new System.Drawing.Point(3, 3);
             this.garagePanel.Name = "garagePanel";
             this.garagePanel.Size = new System.Drawing.Size(672, 497);
             this.garagePanel.TabIndex = 10;
+            // 
+            // listBox2
+            // 
+            this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.ItemHeight = 29;
+            this.listBox2.Items.AddRange(new object[] {
+            "\t\t     \"VAŽIUOK\"",
+            "\t\t     \"AutoBroliai\"",
+            "\t\t     \"Auto OK\"",
+            "\t\t     \"SERVISAS 007\"",
+            "\t\t     \"Juodasis Jaguaras\""});
+            this.listBox2.Location = new System.Drawing.Point(0, 0);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(672, 497);
+            this.listBox2.TabIndex = 2;
             // 
             // menuTabControl
             // 
@@ -159,6 +210,15 @@ namespace AutoDatabase
             this.jobsHistory.Text = "Darbų istorija";
             this.jobsHistory.UseVisualStyleBackColor = true;
             // 
+            // jobsHistoryPanel
+            // 
+            this.jobsHistoryPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.jobsHistoryPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobsHistoryPanel.Location = new System.Drawing.Point(3, 3);
+            this.jobsHistoryPanel.Name = "jobsHistoryPanel";
+            this.jobsHistoryPanel.Size = new System.Drawing.Size(672, 497);
+            this.jobsHistoryPanel.TabIndex = 0;
+            // 
             // garages
             // 
             this.garages.Controls.Add(this.garagePanel);
@@ -199,6 +259,36 @@ namespace AutoDatabase
             this.profilePanel.Name = "profilePanel";
             this.profilePanel.Size = new System.Drawing.Size(672, 497);
             this.profilePanel.TabIndex = 0;
+            // 
+            // phoneNumberLabel
+            // 
+            this.phoneNumberLabel.AutoSize = true;
+            this.phoneNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phoneNumberLabel.Location = new System.Drawing.Point(306, 185);
+            this.phoneNumberLabel.Name = "phoneNumberLabel";
+            this.phoneNumberLabel.Size = new System.Drawing.Size(112, 20);
+            this.phoneNumberLabel.TabIndex = 9;
+            this.phoneNumberLabel.Text = "phone number";
+            // 
+            // addressLabel
+            // 
+            this.addressLabel.AutoSize = true;
+            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressLabel.Location = new System.Drawing.Point(306, 147);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(66, 20);
+            this.addressLabel.TabIndex = 8;
+            this.addressLabel.Text = "address";
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.Location = new System.Drawing.Point(306, 30);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(80, 20);
+            this.usernameLabel.TabIndex = 7;
+            this.usernameLabel.Text = "username";
             // 
             // label7
             // 
@@ -300,76 +390,6 @@ namespace AutoDatabase
             this.userDetailsLabel.TabIndex = 14;
             this.userDetailsLabel.Text = "amazing user";
             // 
-            // listBox1
-            // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 24;
-            this.listBox1.Items.AddRange(new object[] {
-            " Padangu keitimas              Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            " Masinos apziura                 Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-06-01",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            " Padangu keitimas              Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            " Masinos apziura                 Opel(DNF-119)         UAB \"Vaziuok\"   2017-06-01" +
-                "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------",
-            "",
-            "---------------------------------------------------------------------------------" +
-                "-------------------------------------------------"});
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(672, 497);
-            this.listBox1.TabIndex = 1;
-            // 
-            // usernameLabel
-            // 
-            this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usernameLabel.Location = new System.Drawing.Point(306, 30);
-            this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(80, 20);
-            this.usernameLabel.TabIndex = 7;
-            this.usernameLabel.Text = "username";
-            // 
-            // addressLabel
-            // 
-            this.addressLabel.AutoSize = true;
-            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addressLabel.Location = new System.Drawing.Point(306, 147);
-            this.addressLabel.Name = "addressLabel";
-            this.addressLabel.Size = new System.Drawing.Size(66, 20);
-            this.addressLabel.TabIndex = 8;
-            this.addressLabel.Text = "address";
-            // 
-            // phoneNumberLabel
-            // 
-            this.phoneNumberLabel.AutoSize = true;
-            this.phoneNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneNumberLabel.Location = new System.Drawing.Point(306, 185);
-            this.phoneNumberLabel.Name = "phoneNumberLabel";
-            this.phoneNumberLabel.Size = new System.Drawing.Size(112, 20);
-            this.phoneNumberLabel.TabIndex = 9;
-            this.phoneNumberLabel.Text = "phone number";
-            // 
             // InitialWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,6 +404,7 @@ namespace AutoDatabase
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autoservisas";
             this.activeJobsPanel.ResumeLayout(false);
+            this.garagePanel.ResumeLayout(false);
             this.menuTabControl.ResumeLayout(false);
             this.home.ResumeLayout(false);
             this.activeJobs.ResumeLayout(false);
@@ -401,7 +422,6 @@ namespace AutoDatabase
         private System.Windows.Forms.Panel newsFeed;
         private System.Windows.Forms.Panel garagePanel;
         private System.Windows.Forms.Panel activeJobsPanel;
-        private System.Windows.Forms.FlowLayoutPanel jobsHistoryPanel;
         private System.Windows.Forms.TabControl menuTabControl;
         private System.Windows.Forms.TabPage home;
         private System.Windows.Forms.TabPage activeJobs;
@@ -447,7 +467,6 @@ namespace AutoDatabase
         private Button logoutButton;
         private Label userIndicationLabel;
         private Label userDetailsLabel;
-        private ListBox listBox1;
         private Label label7;
         private Label surnameLabel;
         private Label label5;
@@ -458,5 +477,8 @@ namespace AutoDatabase
         private Label usernameLabel;
         private Label phoneNumberLabel;
         private Label addressLabel;
+        private ListBox listBox1;
+        private ListBox listBox2;
+        private FlowLayoutPanel jobsHistoryPanel;
     }
 }
