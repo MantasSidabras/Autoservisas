@@ -43,15 +43,26 @@ namespace AutoDatabase
             this.garages = new System.Windows.Forms.TabPage();
             this.profile = new System.Windows.Forms.TabPage();
             this.profilePanel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.surnameLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.logoutButton = new System.Windows.Forms.Button();
             this.userIndicationLabel = new System.Windows.Forms.Label();
             this.userDetailsLabel = new System.Windows.Forms.Label();
+            this.usernameLabel = new System.Windows.Forms.Label();
+            this.addressLabel = new System.Windows.Forms.Label();
+            this.phoneNumberLabel = new System.Windows.Forms.Label();
             this.menuTabControl.SuspendLayout();
             this.home.SuspendLayout();
             this.activeJobs.SuspendLayout();
             this.jobsHistory.SuspendLayout();
             this.garages.SuspendLayout();
             this.profile.SuspendLayout();
+            this.profilePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // newsFeed
@@ -62,7 +73,6 @@ namespace AutoDatabase
             this.newsFeed.Name = "newsFeed";
             this.newsFeed.Size = new System.Drawing.Size(672, 497);
             this.newsFeed.TabIndex = 8;
-            this.newsFeed.Visible = false;
             // 
             // activeJobsPanel
             // 
@@ -171,11 +181,91 @@ namespace AutoDatabase
             // profilePanel
             // 
             this.profilePanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.profilePanel.Controls.Add(this.phoneNumberLabel);
+            this.profilePanel.Controls.Add(this.addressLabel);
+            this.profilePanel.Controls.Add(this.usernameLabel);
+            this.profilePanel.Controls.Add(this.label7);
+            this.profilePanel.Controls.Add(this.surnameLabel);
+            this.profilePanel.Controls.Add(this.label5);
+            this.profilePanel.Controls.Add(this.label4);
+            this.profilePanel.Controls.Add(this.label3);
+            this.profilePanel.Controls.Add(this.nameLabel);
+            this.profilePanel.Controls.Add(this.label1);
             this.profilePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.profilePanel.Location = new System.Drawing.Point(3, 3);
             this.profilePanel.Name = "profilePanel";
             this.profilePanel.Size = new System.Drawing.Size(672, 497);
             this.profilePanel.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(88, 188);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(113, 17);
+            this.label7.TabIndex = 6;
+            this.label7.Text = "telefono numeris";
+            // 
+            // surnameLabel
+            // 
+            this.surnameLabel.AutoSize = true;
+            this.surnameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.surnameLabel.Location = new System.Drawing.Point(306, 111);
+            this.surnameLabel.Name = "surnameLabel";
+            this.surnameLabel.Size = new System.Drawing.Size(71, 20);
+            this.surnameLabel.TabIndex = 5;
+            this.surnameLabel.Text = "surname";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(88, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 17);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "prisijungimo vardas";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(88, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "adresas";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(88, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "pavardė";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nameLabel.Location = new System.Drawing.Point(306, 72);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(51, 20);
+            this.nameLabel.TabIndex = 1;
+            this.nameLabel.Text = "Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(88, 75);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(51, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "vardas";
             // 
             // logoutButton
             // 
@@ -207,6 +297,36 @@ namespace AutoDatabase
             this.userDetailsLabel.TabIndex = 14;
             this.userDetailsLabel.Text = "amazing user";
             // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usernameLabel.Location = new System.Drawing.Point(306, 30);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(80, 20);
+            this.usernameLabel.TabIndex = 7;
+            this.usernameLabel.Text = "username";
+            // 
+            // addressLabel
+            // 
+            this.addressLabel.AutoSize = true;
+            this.addressLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addressLabel.Location = new System.Drawing.Point(306, 147);
+            this.addressLabel.Name = "addressLabel";
+            this.addressLabel.Size = new System.Drawing.Size(66, 20);
+            this.addressLabel.TabIndex = 8;
+            this.addressLabel.Text = "address";
+            // 
+            // phoneNumberLabel
+            // 
+            this.phoneNumberLabel.AutoSize = true;
+            this.phoneNumberLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.phoneNumberLabel.Location = new System.Drawing.Point(306, 185);
+            this.phoneNumberLabel.Name = "phoneNumberLabel";
+            this.phoneNumberLabel.Size = new System.Drawing.Size(112, 20);
+            this.phoneNumberLabel.TabIndex = 9;
+            this.phoneNumberLabel.Text = "phone number";
+            // 
             // InitialWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +346,8 @@ namespace AutoDatabase
             this.jobsHistory.ResumeLayout(false);
             this.garages.ResumeLayout(false);
             this.profile.ResumeLayout(false);
+            this.profilePanel.ResumeLayout(false);
+            this.profilePanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,5 +403,15 @@ namespace AutoDatabase
         private Button logoutButton;
         private Label userIndicationLabel;
         private Label userDetailsLabel;
+        private Label label7;
+        private Label surnameLabel;
+        private Label label5;
+        private Label label4;
+        private Label label3;
+        private Label nameLabel;
+        private Label label1;
+        private Label usernameLabel;
+        private Label phoneNumberLabel;
+        private Label addressLabel;
     }
 }

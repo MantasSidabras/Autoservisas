@@ -15,64 +15,41 @@ namespace AutoDatabase
     public partial class InitialWindow : Form
     {
         private string ImagesPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ImagesForDiscounts");
-        private List<Discount> discountsList;
-        private Panel activePanel;
+
         private List<int> bottomlist = new List<int>();
         private User connectedUser;
         public InitialWindow(User user) : this()
         {
             connectedUser = user;
+            userDetailsLabel.Text = string.Format("{0} {1}", connectedUser.Client.Name, connectedUser.Client.Surname);
+
+            UpdateUserProfile();
         }
+
+       
+
         public InitialWindow()
         {
             InitializeComponent();
-
-            activePanel = newsFeed;
-            activePanel.Show();
-
-
-
-            discountsList = new List<Discount>()
-            {
-                new Discount() { Title = "Nuolaida padangoms!",
-                                 Text = "Sezono pradžiai pasikeiskite senas padangas pigiau.",
-                                 Code = "padangos147852",
-                                 ExpirationDate = DateTime.Now.AddDays(100),
-                                 LimitedUse = false,
-                                 Percentage = 15,
-                                 PictureName = "NuolaidaPadangoms.jpg",
-                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaPadangoms.jpg"))},
-                new Discount() { Title = "Nuolaida tepalams!",
-                                 Text = "Automobilio tepalų pakeitimas pigiau, nei ankščiau!",
-                                 Code = "tepalas145879",
-                                 ExpirationDate = DateTime.Now.AddDays(100),
-                                 LimitedUse = false,
-                                 Percentage = 5,
-                                 PictureName = "NuolaidaTepalams.jpg",
-                                 Picture = new Bitmap(Path.Combine(ImagesPath, "NuolaidaTepalams.jpg"))}
-            };
-
-
+            DisplayDiscounts();
             
-
-                DisplayDiscounts(discountsList);
-
-
         }
 
-        public void DisplayDiscounts(List<Discount> discounts)
+        private void DisplayDiscounts()
         {
             using (var context = new AutoShopEntities())
             {
                 foreach (var discount in context.Discounts)
                 {
+
+                    discount.Picture = new Bitmap(Path.Combine(ImagesPath, discount.PictureName));
                     PictureBox pic = new PictureBox();
                     pic.Image = discount.Picture;
                     pic.Size = discount.Picture.Size;
                     pic.Click += (sender, e) =>
                     {
-                    //this.Hide();
-                    new DiscountWindow(discount).Show();
+                        //this.Hide();
+                        new DiscountWindow(discount).Show();
                     };
 
                     if (bottomlist.Count == 0)
@@ -92,38 +69,15 @@ namespace AutoDatabase
             }
         }
 
-        private void HomeRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void UpdateUserProfile()
         {
-            activePanel.Visible = false;
-            activePanel = newsFeed;
-            activePanel.Visible = true;
-        }
-
-        private void activeJobsRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            activePanel.Visible = false;
-            activePanel = activeJobsPanel;
-            activePanel.Visible = true;
-        }
-
-        private void jobsHistoryRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            activePanel.Visible = false;
-            activePanel = jobsHistoryPanel;
-            activePanel.Visible = true;
-        }
-
-        private void garragesRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            activePanel.Visible = false;
-            activePanel = garagePanel;
-            activePanel.Visible = true;
+            
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
             new LoginWindow().Show();
-            this.Close();          
+            this.Close();
         }
     }
 }
