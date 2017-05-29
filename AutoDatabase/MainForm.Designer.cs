@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.RegistrateClientTab = new System.Windows.Forms.TabPage();
+            this.passwordTextLabel = new System.Windows.Forms.Label();
+            this.usernameTextLabel = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.usenameTextBox = new System.Windows.Forms.TextBox();
             this.labelIeskotiKliento = new System.Windows.Forms.Label();
             this.textBoxSearchClient = new System.Windows.Forms.TextBox();
             this.labelKlientai = new System.Windows.Forms.Label();
@@ -93,13 +97,15 @@
             this.labelKlientaiGen = new System.Windows.Forms.Label();
             this.listBoxGeneratorClients = new System.Windows.Forms.ListBox();
             this.newsFeed = new System.Windows.Forms.TabPage();
+            this.updateButton = new System.Windows.Forms.Button();
             this.deleteDiscountButton = new System.Windows.Forms.Button();
             this.addDiscountButton = new System.Windows.Forms.Button();
             this.discountTextLabel = new System.Windows.Forms.Label();
             this.discountsListBox = new System.Windows.Forms.ListBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.updateButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
+            this.adminCheckBox = new System.Windows.Forms.CheckBox();
+            this.saveUserButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.RegistrateClientTab.SuspendLayout();
             this.JobsTab.SuspendLayout();
@@ -129,6 +135,12 @@
             // 
             // RegistrateClientTab
             // 
+            this.RegistrateClientTab.Controls.Add(this.saveUserButton);
+            this.RegistrateClientTab.Controls.Add(this.adminCheckBox);
+            this.RegistrateClientTab.Controls.Add(this.passwordTextLabel);
+            this.RegistrateClientTab.Controls.Add(this.usernameTextLabel);
+            this.RegistrateClientTab.Controls.Add(this.passwordTextBox);
+            this.RegistrateClientTab.Controls.Add(this.usenameTextBox);
             this.RegistrateClientTab.Controls.Add(this.labelIeskotiKliento);
             this.RegistrateClientTab.Controls.Add(this.textBoxSearchClient);
             this.RegistrateClientTab.Controls.Add(this.labelKlientai);
@@ -160,11 +172,43 @@
             this.RegistrateClientTab.Controls.Add(this.textBoxAddress);
             this.RegistrateClientTab.Location = new System.Drawing.Point(4, 22);
             this.RegistrateClientTab.Name = "RegistrateClientTab";
-            this.RegistrateClientTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.RegistrateClientTab.Padding = new System.Windows.Forms.Padding(3);
             this.RegistrateClientTab.Size = new System.Drawing.Size(765, 522);
             this.RegistrateClientTab.TabIndex = 0;
             this.RegistrateClientTab.Text = "Registruoti klientą";
             this.RegistrateClientTab.UseVisualStyleBackColor = true;
+            // 
+            // passwordTextLabel
+            // 
+            this.passwordTextLabel.AutoSize = true;
+            this.passwordTextLabel.Location = new System.Drawing.Point(25, 281);
+            this.passwordTextLabel.Name = "passwordTextLabel";
+            this.passwordTextLabel.Size = new System.Drawing.Size(61, 13);
+            this.passwordTextLabel.TabIndex = 50;
+            this.passwordTextLabel.Text = "Slaptažodis";
+            // 
+            // usernameTextLabel
+            // 
+            this.usernameTextLabel.AutoSize = true;
+            this.usernameTextLabel.Location = new System.Drawing.Point(25, 240);
+            this.usernameTextLabel.Name = "usernameTextLabel";
+            this.usernameTextLabel.Size = new System.Drawing.Size(84, 13);
+            this.usernameTextLabel.TabIndex = 49;
+            this.usernameTextLabel.Text = "Vartotojo vardas";
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.Location = new System.Drawing.Point(119, 278);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.passwordTextBox.TabIndex = 48;
+            // 
+            // usenameTextBox
+            // 
+            this.usenameTextBox.Location = new System.Drawing.Point(119, 237);
+            this.usenameTextBox.Name = "usenameTextBox";
+            this.usenameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.usenameTextBox.TabIndex = 47;
             // 
             // labelIeskotiKliento
             // 
@@ -465,7 +509,7 @@
             this.JobsTab.Controls.Add(this.listBoxArrivedCars);
             this.JobsTab.Location = new System.Drawing.Point(4, 22);
             this.JobsTab.Name = "JobsTab";
-            this.JobsTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.JobsTab.Padding = new System.Windows.Forms.Padding(3);
             this.JobsTab.Size = new System.Drawing.Size(765, 522);
             this.JobsTab.TabIndex = 9;
             this.JobsTab.Text = "Darbai";
@@ -620,7 +664,7 @@
             this.dataControllerTab.Controls.Add(this.comboBoxData);
             this.dataControllerTab.Location = new System.Drawing.Point(4, 22);
             this.dataControllerTab.Name = "dataControllerTab";
-            this.dataControllerTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.dataControllerTab.Padding = new System.Windows.Forms.Padding(3);
             this.dataControllerTab.Size = new System.Drawing.Size(765, 522);
             this.dataControllerTab.TabIndex = 7;
             this.dataControllerTab.Text = "Duomenų valdyklė";
@@ -714,7 +758,7 @@
             this.SystemLogTab.Controls.Add(this.richTextBox1);
             this.SystemLogTab.Location = new System.Drawing.Point(4, 22);
             this.SystemLogTab.Name = "SystemLogTab";
-            this.SystemLogTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.SystemLogTab.Padding = new System.Windows.Forms.Padding(3);
             this.SystemLogTab.Size = new System.Drawing.Size(765, 522);
             this.SystemLogTab.TabIndex = 10;
             this.SystemLogTab.Text = "Sistemos žurnalas";
@@ -803,11 +847,21 @@
             this.newsFeed.Controls.Add(this.discountsListBox);
             this.newsFeed.Location = new System.Drawing.Point(4, 22);
             this.newsFeed.Name = "newsFeed";
-            this.newsFeed.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.newsFeed.Padding = new System.Windows.Forms.Padding(3);
             this.newsFeed.Size = new System.Drawing.Size(765, 522);
             this.newsFeed.TabIndex = 12;
             this.newsFeed.Text = "naujienos ir nuolaidos";
             this.newsFeed.UseVisualStyleBackColor = true;
+            // 
+            // updateButton
+            // 
+            this.updateButton.Location = new System.Drawing.Point(353, 203);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(177, 46);
+            this.updateButton.TabIndex = 4;
+            this.updateButton.Text = "Atnaujinti";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // deleteDiscountButton
             // 
@@ -850,16 +904,6 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
-            // updateButton
-            // 
-            this.updateButton.Location = new System.Drawing.Point(353, 203);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(177, 46);
-            this.updateButton.TabIndex = 4;
-            this.updateButton.Text = "Atnaujinti";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
-            // 
             // logoutButton
             // 
             this.logoutButton.Location = new System.Drawing.Point(687, 1);
@@ -869,6 +913,26 @@
             this.logoutButton.Text = "Logout";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
+            // adminCheckBox
+            // 
+            this.adminCheckBox.AutoSize = true;
+            this.adminCheckBox.Location = new System.Drawing.Point(119, 316);
+            this.adminCheckBox.Name = "adminCheckBox";
+            this.adminCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.adminCheckBox.TabIndex = 52;
+            this.adminCheckBox.Text = "administratorius";
+            this.adminCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // saveUserButton
+            // 
+            this.saveUserButton.Location = new System.Drawing.Point(119, 365);
+            this.saveUserButton.Name = "saveUserButton";
+            this.saveUserButton.Size = new System.Drawing.Size(100, 23);
+            this.saveUserButton.TabIndex = 53;
+            this.saveUserButton.Text = "išsaugoti";
+            this.saveUserButton.UseVisualStyleBackColor = true;
+            this.saveUserButton.Click += new System.EventHandler(this.saveUserButton_Click);
             // 
             // MainForm
             // 
@@ -970,6 +1034,12 @@
         private System.Windows.Forms.ListBox discountsListBox;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Label passwordTextLabel;
+        private System.Windows.Forms.Label usernameTextLabel;
+        private System.Windows.Forms.TextBox passwordTextBox;
+        private System.Windows.Forms.TextBox usenameTextBox;
+        private System.Windows.Forms.Button saveUserButton;
+        private System.Windows.Forms.CheckBox adminCheckBox;
     }
 }
 

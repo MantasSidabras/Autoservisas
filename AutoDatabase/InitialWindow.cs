@@ -117,8 +117,8 @@ namespace AutoDatabase
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             new LoginWindow().Show();
+            this.Close();          
         }
     }
 }

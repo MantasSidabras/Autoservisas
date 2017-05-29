@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutoDatabase.Utilities;
 
 namespace AutoDatabase
 {
@@ -428,6 +429,44 @@ namespace AutoDatabase
         {
             this.Hide();
             new LoginWindow().Show();
+        }
+
+        private void saveUserButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string username = usenameTextBox.Text;
+                string password = passwordTextBox.Text;
+
+                string clientName = (listBoxClients.GetItemText(listBoxClients.SelectedItem)).Split(' ')[0];
+                using (var context = new AutoShopEntities())
+                {
+
+                    
+                    User user = new User()
+                    {
+                        Username = username,
+                        PasswordHash = PasswordHashing.StringToSHA1(password),
+                        IsAdmin = adminCheckBox.Checked,
+                        Client = context.Clients.FirstOrDefault(x => x.Name == clientName)
+                    };
+
+                    if (user.Client.User == null)
+                    {
+                        context.Users.Add(user);
+                        user.Client.User = user;
+                        context.SaveChanges();
+                    }
+                }
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

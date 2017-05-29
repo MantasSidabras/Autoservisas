@@ -66,7 +66,7 @@ namespace AutoDatabase
                             // Log in user
                             new InitialWindow(user).Show();
                         }
-                        this.Close();
+                        this.Hide();
                     }
                     else
                     {
