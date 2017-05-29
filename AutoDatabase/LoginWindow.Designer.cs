@@ -49,7 +49,7 @@
             this.usernameTextBox.Location = new System.Drawing.Point(282, 228);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(266, 20);
-            this.usernameTextBox.TabIndex = 0;
+            this.usernameTextBox.TabIndex = 1;
             this.usernameTextBox.Text = "Prisijungimo vardas";
             this.usernameTextBox.Enter += new System.EventHandler(this.usernameTextBox_Enter);
             // 
@@ -58,7 +58,7 @@
             this.passwordTextBox.Location = new System.Drawing.Point(282, 275);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(266, 20);
-            this.passwordTextBox.TabIndex = 1;
+            this.passwordTextBox.TabIndex = 2;
             this.passwordTextBox.Text = "Slaptažodis";
             this.passwordTextBox.Enter += new System.EventHandler(this.passwordTextBox_Enter);
             // 
@@ -67,7 +67,7 @@
             this.loginButton.Location = new System.Drawing.Point(282, 334);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(266, 23);
-            this.loginButton.TabIndex = 2;
+            this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Prisijungti";
             this.loginButton.UseVisualStyleBackColor = true;
             // 

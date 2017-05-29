@@ -417,5 +417,11 @@ namespace AutoDatabase
             }
             catch (Exception) { }
         }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new LoginWindow().Show();
+        }
     }
 }
