@@ -53,37 +53,42 @@ namespace AutoDatabase
             };
 
 
-            DisplayDiscounts(discountsList);
+            
+
+                DisplayDiscounts(discountsList);
 
 
         }
 
         public void DisplayDiscounts(List<Discount> discounts)
         {
-            foreach (var discount in discounts)
+            using (var context = new AutoShopEntities())
             {
-                PictureBox pic = new PictureBox();
-                pic.Image = discount.Picture;
-                pic.Size = discount.Picture.Size;
-                pic.Click += (sender, e) =>
+                foreach (var discount in context.Discounts)
                 {
+                    PictureBox pic = new PictureBox();
+                    pic.Image = discount.Picture;
+                    pic.Size = discount.Picture.Size;
+                    pic.Click += (sender, e) =>
+                    {
                     //this.Hide();
                     new DiscountWindow(discount).Show();
-                };
+                    };
 
-                if (bottomlist.Count == 0)
-                {
-                    bottomlist.Add(pic.Bottom + 8);
-                    pic.Top = 8;
+                    if (bottomlist.Count == 0)
+                    {
+                        bottomlist.Add(pic.Bottom + 8);
+                        pic.Top = 8;
+                    }
+                    else
+                    {
+                        pic.Top = bottomlist.Last() + 8;
+                        bottomlist.Add(pic.Bottom);
+                    }
+                    pic.Left = (newsFeed.ClientSize.Width - pic.Width) / 2;
+                    newsFeed.Controls.Add(pic);
+                    newsFeed.AutoScroll = true;
                 }
-                else
-                {
-                    pic.Top = bottomlist.Last() + 8;
-                    bottomlist.Add(pic.Bottom);
-                }
-                pic.Left = (newsFeed.ClientSize.Width - pic.Width) / 2;
-                newsFeed.Controls.Add(pic);
-                newsFeed.AutoScroll = true;
             }
         }
 

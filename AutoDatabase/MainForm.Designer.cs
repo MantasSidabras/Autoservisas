@@ -34,7 +34,7 @@
             this.passwordTextLabel = new System.Windows.Forms.Label();
             this.usernameTextLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.usenameTextBox = new System.Windows.Forms.TextBox();
+            this.usernameTextBox = new System.Windows.Forms.TextBox();
             this.labelIeskotiKliento = new System.Windows.Forms.Label();
             this.textBoxSearchClient = new System.Windows.Forms.TextBox();
             this.labelKlientai = new System.Windows.Forms.Label();
@@ -140,7 +140,7 @@
             this.RegistrateClientTab.Controls.Add(this.passwordTextLabel);
             this.RegistrateClientTab.Controls.Add(this.usernameTextLabel);
             this.RegistrateClientTab.Controls.Add(this.passwordTextBox);
-            this.RegistrateClientTab.Controls.Add(this.usenameTextBox);
+            this.RegistrateClientTab.Controls.Add(this.usernameTextBox);
             this.RegistrateClientTab.Controls.Add(this.labelIeskotiKliento);
             this.RegistrateClientTab.Controls.Add(this.textBoxSearchClient);
             this.RegistrateClientTab.Controls.Add(this.labelKlientai);
@@ -203,12 +203,12 @@
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 48;
             // 
-            // usenameTextBox
+            // usernameTextBox
             // 
-            this.usenameTextBox.Location = new System.Drawing.Point(119, 237);
-            this.usenameTextBox.Name = "usenameTextBox";
-            this.usenameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.usenameTextBox.TabIndex = 47;
+            this.usernameTextBox.Location = new System.Drawing.Point(119, 237);
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.usernameTextBox.TabIndex = 47;
             // 
             // labelIeskotiKliento
             // 
@@ -1037,7 +1037,7 @@
         private System.Windows.Forms.Label passwordTextLabel;
         private System.Windows.Forms.Label usernameTextLabel;
         private System.Windows.Forms.TextBox passwordTextBox;
-        private System.Windows.Forms.TextBox usenameTextBox;
+        private System.Windows.Forms.TextBox usernameTextBox;
         private System.Windows.Forms.Button saveUserButton;
         private System.Windows.Forms.CheckBox adminCheckBox;
     }

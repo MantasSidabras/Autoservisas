@@ -435,7 +435,7 @@ namespace AutoDatabase
         {
             try
             {
-                string username = usenameTextBox.Text;
+                string username = usernameTextBox.Text;
                 string password = passwordTextBox.Text;
 
                 string clientName = (listBoxClients.GetItemText(listBoxClients.SelectedItem)).Split(' ')[0];
@@ -467,6 +467,9 @@ namespace AutoDatabase
             {
 
             }
+            usernameTextBox.Text = string.Empty;
+            passwordTextBox.Text = string.Empty;
+
         }
     }
 }
