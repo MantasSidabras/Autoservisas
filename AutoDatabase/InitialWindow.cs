@@ -83,5 +83,10 @@ namespace AutoDatabase
             new LoginWindow().Show();
             this.Close();
         }
+
+        private void jobsHistoryPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

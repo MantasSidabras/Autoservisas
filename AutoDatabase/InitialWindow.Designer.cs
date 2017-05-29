@@ -41,7 +41,7 @@ namespace AutoDatabase
             this.home = new System.Windows.Forms.TabPage();
             this.activeJobs = new System.Windows.Forms.TabPage();
             this.jobsHistory = new System.Windows.Forms.TabPage();
-            this.jobsHistoryPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.jobsHistoryPanel = new System.Windows.Forms.Panel();
             this.garages = new System.Windows.Forms.TabPage();
             this.profile = new System.Windows.Forms.TabPage();
             this.profilePanel = new System.Windows.Forms.Panel();
@@ -58,12 +58,14 @@ namespace AutoDatabase
             this.logoutButton = new System.Windows.Forms.Button();
             this.userIndicationLabel = new System.Windows.Forms.Label();
             this.userDetailsLabel = new System.Windows.Forms.Label();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.activeJobsPanel.SuspendLayout();
             this.garagePanel.SuspendLayout();
             this.menuTabControl.SuspendLayout();
             this.home.SuspendLayout();
             this.activeJobs.SuspendLayout();
             this.jobsHistory.SuspendLayout();
+            this.jobsHistoryPanel.SuspendLayout();
             this.garages.SuspendLayout();
             this.profile.SuspendLayout();
             this.profilePanel.SuspendLayout();
@@ -122,6 +124,9 @@ namespace AutoDatabase
                 "-------------------------------------------------",
             "",
             "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
                 "-------------------------------------------------"});
             this.listBox1.Location = new System.Drawing.Point(0, 0);
             this.listBox1.Name = "listBox1";
@@ -132,7 +137,7 @@ namespace AutoDatabase
             // 
             this.garagePanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.garagePanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.garagePanel.Controls.Add(this.listBox2);
+            this.garagePanel.Controls.Add(this.listBox3);
             this.garagePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.garagePanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.garagePanel.Location = new System.Drawing.Point(3, 3);
@@ -143,15 +148,42 @@ namespace AutoDatabase
             // listBox2
             // 
             this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 29;
+            this.listBox2.ItemHeight = 24;
             this.listBox2.Items.AddRange(new object[] {
-            "\t\t     \"VAŽIUOK\"",
-            "\t\t     \"AutoBroliai\"",
-            "\t\t     \"Auto OK\"",
-            "\t\t     \"SERVISAS 007\"",
-            "\t\t     \"Juodasis Jaguaras\""});
+            " Tepalu keitimas                  Peugeot(AFA-008)   UAB \"Vaziuok\"   2017-03-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Tepalu keitimas                  Opel(DNF-119)         UAB \"Vaziuok\"   2017-02-0" +
+                "1",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Padangu keitimas              Opel(DNF-119)         UAB \"Vaziuok\"   2016-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Padangu keitimas              Peugeot(AFA-008)   UAB \"Vaziuok\"   2016-06-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Opel(DNF-119)         UAB \"Vaziuok\"   2016-02-01" +
+                "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            " Masinos apziura                 Peugeot(AFA-008)   UAB \"Vaziuok\"   2016-02-01",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------",
+            "",
+            "---------------------------------------------------------------------------------" +
+                "-------------------------------------------------"});
             this.listBox2.Location = new System.Drawing.Point(0, 0);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(672, 497);
@@ -213,11 +245,15 @@ namespace AutoDatabase
             // jobsHistoryPanel
             // 
             this.jobsHistoryPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.jobsHistoryPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.jobsHistoryPanel.Controls.Add(this.listBox2);
             this.jobsHistoryPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.jobsHistoryPanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.jobsHistoryPanel.Location = new System.Drawing.Point(3, 3);
             this.jobsHistoryPanel.Name = "jobsHistoryPanel";
             this.jobsHistoryPanel.Size = new System.Drawing.Size(672, 497);
-            this.jobsHistoryPanel.TabIndex = 0;
+            this.jobsHistoryPanel.TabIndex = 11;
+            this.jobsHistoryPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.jobsHistoryPanel_Paint);
             // 
             // garages
             // 
@@ -390,6 +426,23 @@ namespace AutoDatabase
             this.userDetailsLabel.TabIndex = 14;
             this.userDetailsLabel.Text = "amazing user";
             // 
+            // listBox3
+            // 
+            this.listBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 29;
+            this.listBox3.Items.AddRange(new object[] {
+            "\t\t     \"VAŽIUOK\"",
+            "\t\t     \"AutoBroliai\"",
+            "\t\t     \"Auto OK\"",
+            "\t\t     \"SERVISAS 007\"",
+            "\t\t     \"Juodasis Jaguaras\""});
+            this.listBox3.Location = new System.Drawing.Point(0, 0);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(672, 497);
+            this.listBox3.TabIndex = 0;
+            // 
             // InitialWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +462,7 @@ namespace AutoDatabase
             this.home.ResumeLayout(false);
             this.activeJobs.ResumeLayout(false);
             this.jobsHistory.ResumeLayout(false);
+            this.jobsHistoryPanel.ResumeLayout(false);
             this.garages.ResumeLayout(false);
             this.profile.ResumeLayout(false);
             this.profilePanel.ResumeLayout(false);
@@ -479,6 +533,7 @@ namespace AutoDatabase
         private Label addressLabel;
         private ListBox listBox1;
         private ListBox listBox2;
-        private FlowLayoutPanel jobsHistoryPanel;
+        private Panel jobsHistoryPanel;
+        private ListBox listBox3;
     }
 }
