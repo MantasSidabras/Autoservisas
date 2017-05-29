@@ -410,7 +410,7 @@ namespace AutoDatabase
             {
                 using (var context = new AutoShopEntities())
                 {
-                    context.Discounts.Remove((Discount)discountsListBox.SelectedItem);
+                    context.Discounts.Remove(context.Discounts.FirstOrDefault(q => q.Id == ((Discount)discountsListBox.SelectedItem).Id));
                     discountsListBox.Items.Remove((Discount)discountsListBox.SelectedItem);
                     context.SaveChanges();
                 }
