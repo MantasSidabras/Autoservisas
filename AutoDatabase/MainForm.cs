@@ -15,6 +15,12 @@ namespace AutoDatabase
     {
         private bool selectedClientPerson = true;
         DataController data;
+        private User connectedUser;
+
+        public MainForm(User user) : this()
+        {
+            connectedUser = user;
+        }
 
         public MainForm()
         {

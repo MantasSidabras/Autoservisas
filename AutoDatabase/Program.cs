@@ -36,6 +36,7 @@ namespace AutoDatabase
                     client.User.Client = client;
                     context.Clients.Add(client);
                     context.Users.Add(client.User);
+                    context.SaveChanges();
                 }
             }
             Application.EnableVisualStyles();

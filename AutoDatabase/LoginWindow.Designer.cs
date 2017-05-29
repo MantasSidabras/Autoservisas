@@ -70,6 +70,7 @@
             this.loginButton.TabIndex = 0;
             this.loginButton.Text = "Prisijungti";
             this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // LoginWindow
             // 

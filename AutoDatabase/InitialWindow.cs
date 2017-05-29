@@ -18,7 +18,11 @@ namespace AutoDatabase
         private List<Discount> discountsList;
         private Panel activePanel;
         private List<int> bottomlist = new List<int>();
-
+        private User connectedUser;
+        public InitialWindow(User user) : this()
+        {
+            connectedUser = user;
+        }
         public InitialWindow()
         {
             InitializeComponent();

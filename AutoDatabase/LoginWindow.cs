@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutoDatabase.Utilities;
 
 namespace AutoDatabase
 {
@@ -42,24 +43,42 @@ namespace AutoDatabase
             }         
         }
 
-        //private void loginButton_Click(object sender, EventArgs e)
-        //{
-        //    string username = usernameTextBox.Text;
-        //    string password = passwordTextBox.Text;
 
-        //    if (User user = GetUser(username, password) != null)
-        //    {
-        //        this.Hide();
-        //        if (admin)
-        //        {
-        //            new MainForm(user).Show();
-        //        }
-        //        else
-        //        {
-        //            new InitialWindow(user).Show();
-        //        }
-        //    }
-        //}
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            string username = usernameTextBox.Text;
+            string password = passwordTextBox.Text;
+            using (var context = new AutoShopEntities())
+            {
+                User user = context.Users.FirstOrDefault(x => x.Username == username);
+                if (user != null)
+                {
+                    if (PasswordHashing.isPasswordCorret(password, user.PasswordHash))
+                    {
+                        
+                        if (user.IsAdmin)
+                        {
+                            // Log in Admin
+                            new MainForm(user).Show();
+                        }
+                        else
+                        {
+                            // Log in user
+                            new InitialWindow(user).Show();
+                        }
+                        this.Close();
+                    }
+                    else
+                    {
+                        // Display incorrect password notif
+                    }
+                }
+                else
+                {
+                    // Display User not found notif
+                }
+            }
+        }
 
 
     }
