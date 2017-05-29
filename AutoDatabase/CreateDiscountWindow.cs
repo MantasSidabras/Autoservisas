@@ -41,35 +41,48 @@ namespace AutoDatabase
 
         private void saveDiscountButton_Click(object sender, EventArgs e)
         {
-            short perc;
-            short.TryParse(discountPercentageTextBox.Text, out perc);
-            int year;
-            int month;
-            int day;
-
-            int.TryParse(yearTextBox.Text, out year);
-            int.TryParse(monthTextBox.Text, out month);
-            int.TryParse(dayTextBox.Text, out day);
-            string path = Path.Combine(Environment.CurrentDirectory, @"ImagesForDiscounts\", GetFileName(filePathLabel.Text));
-            Image img = new Bitmap(filePathLabel.Text);
-            var imgBytes = ImageToByteArray(img);
-
-            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            try
             {
-                fs.Write(imgBytes, 0, imgBytes.Length);
+                short perc;
+                short.TryParse(discountPercentageTextBox.Text, out perc);
+                int year;
+                int month;
+                int day;
+
+                int.TryParse(yearTextBox.Text, out year);
+                int.TryParse(monthTextBox.Text, out month);
+                int.TryParse(dayTextBox.Text, out day);
+                string path = Path.Combine(Environment.CurrentDirectory, @"ImagesForDiscounts\", GetFileName(filePathLabel.Text));
+                Image img = new Bitmap(filePathLabel.Text);
+                var imgBytes = ImageToByteArray(img);
+
+                using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                {
+                    fs.Write(imgBytes, 0, imgBytes.Length);
+                }
+
+                var discount = new Discount()
+                {
+                    Title = discountNameTextBox.Text,
+                    Percentage = perc,
+                    ExpirationDate = new DateTime(year, month, day),
+                    Text = discountDescriptionTextBox.Text,
+                    LimitedUse = false,
+                    PictureName = path,
+                    Picture = img,
+                    Code = codeTextBox.Text
+                };
+
+                using(var context = new AutoShopEntities())
+                {
+                    context.Discounts.Add(discount);
+                }
+
             }
-
-            var discount = new Discount()
+            catch (Exception)
             {
-                Title = discountNameTextBox.Text,
-                Percentage = perc,
-                ExpirationDate = new DateTime(year, month, day),
-                Text = discountDescriptionTextBox.Text,
-                LimitedUse = false,
-                PictureName = path,
-                Picture = img
-                
-            };
+
+            }
         }
 
         private string GetFileName( string path)

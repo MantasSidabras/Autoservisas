@@ -19,7 +19,7 @@ namespace AutoDatabase
         private Panel activePanel;
         private List<int> bottomlist = new List<int>();
 
-        public InitialWindow(List<Discount> discountsList)
+        public InitialWindow()
         {
             InitializeComponent();
 
