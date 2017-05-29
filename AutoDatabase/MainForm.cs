@@ -11,19 +11,19 @@ using System.Windows.Forms;
 
 namespace AutoDatabase
 {
-	public partial class MainForm : Form
-	{
-		private bool selectedClientPerson = true;
-		DataController data;
+    public partial class MainForm : Form
+    {
+        private bool selectedClientPerson = true;
+        DataController data;
 
-		public MainForm()
-		{
-			InitializeComponent();
+        public MainForm()
+        {
+            InitializeComponent();
 
-			data = new DataController();
+            data = new DataController();
 
-			data.PopulateListBoxServices(listBoxServices);
-			data.PopulateListBoxEmployees(listBoxEmployees);
+            data.PopulateListBoxServices(listBoxServices);
+            data.PopulateListBoxEmployees(listBoxEmployees);
             populateJobsListBox();
 
             populateCarsListBox();
@@ -32,6 +32,16 @@ namespace AutoDatabase
             populateJobsListBox();
             populateJobEmployeesListBox();
             this.comboBoxClientType.SelectedIndex = 1;
+            updateDiscountBox();
+        }
+
+        private void updateDiscountBox()
+        {
+            using (var context = new AutoShopEntities())
+            {
+                discountsListBox.Items.AddRange(context.Discounts.ToArray());
+            }
+            discountsListBox.DisplayMember = "Title";
         }
 
         private void populateCarsListBox()
@@ -94,176 +104,176 @@ namespace AutoDatabase
             listBoxDuomenys.DisplayMember = "Name";
         }
 
-		private void buttonSelectPerson_Click(object sender, EventArgs e)
-		{
-			textClient1.Text = "Vardas";
-			textClient2.Text = "Pavarde";
-		}
+        private void buttonSelectPerson_Click(object sender, EventArgs e)
+        {
+            textClient1.Text = "Vardas";
+            textClient2.Text = "Pavarde";
+        }
 
-		private void buttonSelectCompany_Click(object sender, EventArgs e)
-		{
-			textClient1.Text = "Pavadinimas";
-			textClient2.Text = "Kodas";
-		}
+        private void buttonSelectCompany_Click(object sender, EventArgs e)
+        {
+            textClient1.Text = "Pavadinimas";
+            textClient2.Text = "Kodas";
+        }
 
-		private void buttonRegisterClient_Click(object sender, EventArgs e)
-		{
-			textBoxClient1_Validated(this, e);
-			textBoxClient2_Validated(this, e);
-			textBoxAddress_Validated(this, e);
-			textBoxTelephone_Validated(this, e);
+        private void buttonRegisterClient_Click(object sender, EventArgs e)
+        {
+            textBoxClient1_Validated(this, e);
+            textBoxClient2_Validated(this, e);
+            textBoxAddress_Validated(this, e);
+            textBoxTelephone_Validated(this, e);
 
-			if (textClient1.Text == "Vardas")
-			{
-				data.AddNewClient(true, textBoxClient1.Text, textBoxClient2.Text, textBoxAddress.Text, textBoxTelephone.Text);
-			}
-			else
-			{
-				data.AddNewClient(false, textBoxClient1.Text, textBoxClient2.Text, textBoxAddress.Text, textBoxTelephone.Text);
-			}
+            if (textClient1.Text == "Vardas")
+            {
+                data.AddNewClient(true, textBoxClient1.Text, textBoxClient2.Text, textBoxAddress.Text, textBoxTelephone.Text);
+            }
+            else
+            {
+                data.AddNewClient(false, textBoxClient1.Text, textBoxClient2.Text, textBoxAddress.Text, textBoxTelephone.Text);
+            }
 
-			textBoxClient1.Text = "";
-			textBoxClient2.Text = "";
-			textBoxAddress.Text = "";
-			textBoxTelephone.Text = "";
+            textBoxClient1.Text = "";
+            textBoxClient2.Text = "";
+            textBoxAddress.Text = "";
+            textBoxTelephone.Text = "";
 
-			data.PopulateListBoxClients(selectedClientPerson, listBoxClients);        
-		}
+            data.PopulateListBoxClients(selectedClientPerson, listBoxClients);
+        }
 
-		private void listBoxCars_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        private void listBoxCars_SelectedIndexChanged(object sender, EventArgs e)
+        {
             populateJobsListBox();
-		}
+        }
 
-		private void buttonAddJobToCar_Click(object sender, EventArgs e)
-		{
+        private void buttonAddJobToCar_Click(object sender, EventArgs e)
+        {
             if (listBoxArrivedCars.SelectedValue == null || listBoxServices.SelectedValue == null)
                 return;
 
-			string carVin = (string)listBoxArrivedCars.SelectedValue;
-			int serviceId = (int)listBoxServices.SelectedValue;
+            string carVin = (string)listBoxArrivedCars.SelectedValue;
+            int serviceId = (int)listBoxServices.SelectedValue;
 
-			data.AddJobToCar(serviceId, carVin);
+            data.AddJobToCar(serviceId, carVin);
             populateJobsListBox();
-		}
+        }
 
-		private void buttonFinishJob_Click(object sender, EventArgs e)
-		{
-			data.FinishJob(listBoxCarJobs.SelectedValue);
+        private void buttonFinishJob_Click(object sender, EventArgs e)
+        {
+            data.FinishJob(listBoxCarJobs.SelectedValue);
             populateJobsListBox();
-		}
+        }
 
-		private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			listBoxClients.ValueMember = "Id";
-		}
+        private void listBoxClients_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listBoxClients.ValueMember = "Id";
+        }
 
 
-		private void buttonCarArrived_Click(object sender, EventArgs e)
-		{
-			data.PopulateListBoxArrivedCars(listBoxArrivedCars);
+        private void buttonCarArrived_Click(object sender, EventArgs e)
+        {
+            data.PopulateListBoxArrivedCars(listBoxArrivedCars);
 
-		}
+        }
 
-		private void buttonCarLeft_Click(object sender, EventArgs e)
-		{
-			data.PopulateListBoxArrivedCars(listBoxArrivedCars);
+        private void buttonCarLeft_Click(object sender, EventArgs e)
+        {
+            data.PopulateListBoxArrivedCars(listBoxArrivedCars);
 
-		}
+        }
 
-		private void buttonAddService_Click(object sender, EventArgs e)
-        { 
-			data.PopulateListBoxServices(listBoxServices);
-		}
+        private void buttonAddService_Click(object sender, EventArgs e)
+        {
+            data.PopulateListBoxServices(listBoxServices);
+        }
 
-		private void buttonDeleteJob_Click(object sender, EventArgs e)
-		{
-			data.DeleteJob(listBoxCarJobs.SelectedValue);
+        private void buttonDeleteJob_Click(object sender, EventArgs e)
+        {
+            data.DeleteJob(listBoxCarJobs.SelectedValue);
             populateJobsListBox();
-            populateJobEmployeesListBox();
-		}
-
-		private void buttonAddEmployeeToJob_Click(object sender, EventArgs e)
-		{
-			data.AddEmployeeToJob(listBoxEmployees.SelectedValue, listBoxCarJobs.SelectedValue);
             populateJobEmployeesListBox();
         }
 
-		private void listBoxCarJobs_SelectedIndexChanged(object sender, EventArgs e)
-		{
+        private void buttonAddEmployeeToJob_Click(object sender, EventArgs e)
+        {
+            data.AddEmployeeToJob(listBoxEmployees.SelectedValue, listBoxCarJobs.SelectedValue);
             populateJobEmployeesListBox();
         }
 
-		private void buttonPerson_Click(object sender, EventArgs e)
-		{
-			selectedClientPerson = true;
-			data.PopulateListBoxClients(selectedClientPerson, listBoxClients);
-		}
+        private void listBoxCarJobs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            populateJobEmployeesListBox();
+        }
 
-		private void buttonCompany_Click(object sender, EventArgs e)
-		{
-			selectedClientPerson = false;
-			data.PopulateListBoxClients(selectedClientPerson, listBoxClients);
-		}
+        private void buttonPerson_Click(object sender, EventArgs e)
+        {
+            selectedClientPerson = true;
+            data.PopulateListBoxClients(selectedClientPerson, listBoxClients);
+        }
 
-		private void CheckNumbersError(TextBox textBox, Button button, string name)
-		{
-			long parsedValue;
-			if (!long.TryParse(textBox.Text, out parsedValue) || textBox.Text == "")
-			{
-				errorProvider.SetError(textBox, name + " turi sudaryti skaiciai");
-				button.Enabled = false;
-			}
-			else
-			{
-				errorProvider.SetError(textBox, "");
-				button.Enabled = true;
-			}
-		}
+        private void buttonCompany_Click(object sender, EventArgs e)
+        {
+            selectedClientPerson = false;
+            data.PopulateListBoxClients(selectedClientPerson, listBoxClients);
+        }
 
-		private void textBoxTelephone_Validated(object sender, EventArgs e)
-		{
-			CheckNumbersError(textBoxTelephone, buttonRegisterClient, "Telefonas");
-		}
+        private void CheckNumbersError(TextBox textBox, Button button, string name)
+        {
+            long parsedValue;
+            if (!long.TryParse(textBox.Text, out parsedValue) || textBox.Text == "")
+            {
+                errorProvider.SetError(textBox, name + " turi sudaryti skaiciai");
+                button.Enabled = false;
+            }
+            else
+            {
+                errorProvider.SetError(textBox, "");
+                button.Enabled = true;
+            }
+        }
 
-		private void textBoxCarRun_Validated(object sender, EventArgs e)
-		{
-			CheckNumbersError(textBoxCarRun, buttonAddNewCar, "Rida");
-		}
+        private void textBoxTelephone_Validated(object sender, EventArgs e)
+        {
+            CheckNumbersError(textBoxTelephone, buttonRegisterClient, "Telefonas");
+        }
 
-		private void textBoxCarYear_Validated(object sender, EventArgs e)
-		{
-			CheckNumbersError(textBoxCarYear, buttonAddNewCar, "Metai");
-		}
+        private void textBoxCarRun_Validated(object sender, EventArgs e)
+        {
+            CheckNumbersError(textBoxCarRun, buttonAddNewCar, "Rida");
+        }
 
-		private void textBoxClient1_Validated(object sender, EventArgs e)
-		{
-			CheckEmptyError(textBoxClient1, buttonRegisterClient, textClient1.Text);
-		}
+        private void textBoxCarYear_Validated(object sender, EventArgs e)
+        {
+            CheckNumbersError(textBoxCarYear, buttonAddNewCar, "Metai");
+        }
 
-		private void textBoxClient2_Validated(object sender, EventArgs e)
-		{
-			CheckEmptyError(textBoxClient2, buttonRegisterClient, textClient2.Text);
-		}
+        private void textBoxClient1_Validated(object sender, EventArgs e)
+        {
+            CheckEmptyError(textBoxClient1, buttonRegisterClient, textClient1.Text);
+        }
 
-		private void CheckEmptyError(TextBox textBox, Button button, string name)
-		{
-			if (textBox.Text == "")
-			{
-				errorProvider.SetError(textBox, name + " negali buti tuscias");
-				button.Enabled = false;
-			}
-			else
-			{
-				errorProvider.SetError(textBox, "");
-				button.Enabled = true;
-			}
-		}
+        private void textBoxClient2_Validated(object sender, EventArgs e)
+        {
+            CheckEmptyError(textBoxClient2, buttonRegisterClient, textClient2.Text);
+        }
 
-		private void textBoxAddress_Validated(object sender, EventArgs e)
-		{
-			CheckEmptyError(textBoxAddress, buttonRegisterClient, "Adresas");
-		}
+        private void CheckEmptyError(TextBox textBox, Button button, string name)
+        {
+            if (textBox.Text == "")
+            {
+                errorProvider.SetError(textBox, name + " negali buti tuscias");
+                button.Enabled = false;
+            }
+            else
+            {
+                errorProvider.SetError(textBox, "");
+                button.Enabled = true;
+            }
+        }
+
+        private void textBoxAddress_Validated(object sender, EventArgs e)
+        {
+            CheckEmptyError(textBoxAddress, buttonRegisterClient, "Adresas");
+        }
 
         private void comboBoxData_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -272,7 +282,8 @@ namespace AutoDatabase
             {
                 buttonAddNew.Visible = false;
             }
-            else {
+            else
+            {
                 buttonAddNew.Visible = true;
             }
         }
@@ -290,7 +301,7 @@ namespace AutoDatabase
 
         private void comboBoxClientType_TextChanged(object sender, EventArgs e)
         {
-            if(comboBoxClientType.Text == "Fizinis asmuo")
+            if (comboBoxClientType.Text == "Fizinis asmuo")
             {
                 textClient1.Text = "Vardas";
                 textClient2.Text = "Pavarde";
@@ -329,15 +340,15 @@ namespace AutoDatabase
             listBoxClients.ValueMember = "Id";
             data.PopulateListBoxArrivedCars(listBoxArrivedCars);
 
-            if (string.IsNullOrWhiteSpace (textBoxCarEngine.Text) || string.IsNullOrWhiteSpace (textBoxCarMake.Text) ||
-                string.IsNullOrWhiteSpace (textBoxCarModel.Text) || string.IsNullOrWhiteSpace (textBoxCarPlate.Text) ||
-                string.IsNullOrWhiteSpace (textBoxCarRun.Text) || string.IsNullOrWhiteSpace (textBoxCarVIN.Text) ||
-                string.IsNullOrWhiteSpace (textBoxCarYear.Text) || listBoxClients.SelectedValue == null)
+            if (string.IsNullOrWhiteSpace(textBoxCarEngine.Text) || string.IsNullOrWhiteSpace(textBoxCarMake.Text) ||
+                string.IsNullOrWhiteSpace(textBoxCarModel.Text) || string.IsNullOrWhiteSpace(textBoxCarPlate.Text) ||
+                string.IsNullOrWhiteSpace(textBoxCarRun.Text) || string.IsNullOrWhiteSpace(textBoxCarVIN.Text) ||
+                string.IsNullOrWhiteSpace(textBoxCarYear.Text) || listBoxClients.SelectedValue == null)
                 return;
 
             int run, year;
-            int.TryParse (textBoxCarRun.Text, out run);
-            int.TryParse (textBoxCarYear.Text, out year);
+            int.TryParse(textBoxCarRun.Text, out run);
+            int.TryParse(textBoxCarYear.Text, out year);
 
             Car car = new Car
             {
