@@ -415,7 +415,7 @@ namespace AutoDatabase
                     context.SaveChanges();
                 }
             }
-            catch (Exception) { }
+            catch (Exception ex) { }
         }
     }
 }
