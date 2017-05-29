@@ -816,6 +816,7 @@
             this.deleteDiscountButton.TabIndex = 3;
             this.deleteDiscountButton.Text = "ištrinti nuolaidą";
             this.deleteDiscountButton.UseVisualStyleBackColor = true;
+            this.deleteDiscountButton.Click += new System.EventHandler(this.deleteDiscountButton_Click);
             // 
             // addDiscountButton
             // 

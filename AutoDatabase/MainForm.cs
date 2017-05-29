@@ -403,5 +403,19 @@ namespace AutoDatabase
         {
             updateDiscountBox();
         }
+
+        private void deleteDiscountButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var context = new AutoShopEntities())
+                {
+                    context.Discounts.Remove((Discount)discountsListBox.SelectedItem);
+                    discountsListBox.Items.Remove((Discount)discountsListBox.SelectedItem);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception) { }
+        }
     }
 }
