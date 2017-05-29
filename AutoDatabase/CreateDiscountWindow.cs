@@ -76,6 +76,7 @@ namespace AutoDatabase
                 using(var context = new AutoShopEntities())
                 {
                     context.Discounts.Add(discount);
+                    context.SaveChanges();
                 }
 
             }
@@ -83,6 +84,8 @@ namespace AutoDatabase
             {
 
             }
+
+            this.Hide();
         }
 
         private string GetFileName( string path)
