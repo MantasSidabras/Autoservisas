@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace AutoDatabase
 {
-    partial class InitialWindow
+    partial class ClientWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -36,6 +36,7 @@ namespace AutoDatabase
             this.activeJobsPanel = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.garagePanel = new System.Windows.Forms.Panel();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.menuTabControl = new System.Windows.Forms.TabControl();
             this.home = new System.Windows.Forms.TabPage();
@@ -58,7 +59,8 @@ namespace AutoDatabase
             this.logoutButton = new System.Windows.Forms.Button();
             this.userIndicationLabel = new System.Windows.Forms.Label();
             this.userDetailsLabel = new System.Windows.Forms.Label();
-            this.listBox3 = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.searchBox = new System.Windows.Forms.TextBox();
             this.activeJobsPanel.SuspendLayout();
             this.garagePanel.SuspendLayout();
             this.menuTabControl.SuspendLayout();
@@ -145,6 +147,23 @@ namespace AutoDatabase
             this.garagePanel.Size = new System.Drawing.Size(672, 497);
             this.garagePanel.TabIndex = 10;
             // 
+            // listBox3
+            // 
+            this.listBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.ItemHeight = 29;
+            this.listBox3.Items.AddRange(new object[] {
+            "\t\t     \"VAŽIUOK\"",
+            "\t\t     \"AutoBroliai\"",
+            "\t\t     \"Auto OK\"",
+            "\t\t     \"SERVISAS 007\"",
+            "\t\t     \"Juodasis Jaguaras\""});
+            this.listBox3.Location = new System.Drawing.Point(0, 0);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(672, 497);
+            this.listBox3.TabIndex = 0;
+            // 
             // listBox2
             // 
             this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -217,7 +236,7 @@ namespace AutoDatabase
             this.home.Padding = new System.Windows.Forms.Padding(3);
             this.home.Size = new System.Drawing.Size(678, 503);
             this.home.TabIndex = 0;
-            this.home.Text = "Pradžia";
+            this.home.Text = "Nuolaidos";
             this.home.UseVisualStyleBackColor = true;
             // 
             // activeJobs
@@ -426,33 +445,35 @@ namespace AutoDatabase
             this.userDetailsLabel.TabIndex = 14;
             this.userDetailsLabel.Text = "amazing user";
             // 
-            // listBox3
+            // label2
             // 
-            this.listBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.ItemHeight = 29;
-            this.listBox3.Items.AddRange(new object[] {
-            "\t\t     \"VAŽIUOK\"",
-            "\t\t     \"AutoBroliai\"",
-            "\t\t     \"Auto OK\"",
-            "\t\t     \"SERVISAS 007\"",
-            "\t\t     \"Juodasis Jaguaras\""});
-            this.listBox3.Location = new System.Drawing.Point(0, 0);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(672, 497);
-            this.listBox3.TabIndex = 0;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(357, 25);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Paieška";
             // 
-            // InitialWindow
+            // searchBox
+            // 
+            this.searchBox.Location = new System.Drawing.Point(419, 22);
+            this.searchBox.Name = "searchBox";
+            this.searchBox.Size = new System.Drawing.Size(149, 20);
+            this.searchBox.TabIndex = 16;
+            this.searchBox.TextChanged += new System.EventHandler(this.searchBox_TextChanged);
+            // 
+            // ClientWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.searchBox);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.userDetailsLabel);
             this.Controls.Add(this.userIndicationLabel);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.menuTabControl);
-            this.Name = "InitialWindow";
+            this.Name = "ClientWindow";
             this.Padding = new System.Windows.Forms.Padding(0, 50, 0, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Autoservisas";
@@ -535,5 +556,7 @@ namespace AutoDatabase
         private ListBox listBox2;
         private Panel jobsHistoryPanel;
         private ListBox listBox3;
+        private Label label2;
+        private TextBox searchBox;
     }
 }

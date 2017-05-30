@@ -12,18 +12,18 @@ using AutoDatabase.Utilities;
 
 namespace AutoDatabase
 {
-    public partial class MainForm : Form
+    public partial class AdminWindow : Form
     {
         private bool selectedClientPerson = true;
         DataController data;
         private User connectedUser;
 
-        public MainForm(User user) : this()
+        public AdminWindow(User user) : this()
         {
             connectedUser = user;
         }
 
-        public MainForm()
+        public AdminWindow()
         {
             InitializeComponent();
 

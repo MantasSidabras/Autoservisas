@@ -1,6 +1,6 @@
 ﻿namespace AutoDatabase
 {
-	partial class MainForm
+	partial class AdminWindow
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.RegistrateClientTab = new System.Windows.Forms.TabPage();
+            this.saveUserButton = new System.Windows.Forms.Button();
+            this.adminCheckBox = new System.Windows.Forms.CheckBox();
             this.passwordTextLabel = new System.Windows.Forms.Label();
             this.usernameTextLabel = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
@@ -104,8 +106,6 @@
             this.discountsListBox = new System.Windows.Forms.ListBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.logoutButton = new System.Windows.Forms.Button();
-            this.adminCheckBox = new System.Windows.Forms.CheckBox();
-            this.saveUserButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.RegistrateClientTab.SuspendLayout();
             this.JobsTab.SuspendLayout();
@@ -177,6 +177,26 @@
             this.RegistrateClientTab.TabIndex = 0;
             this.RegistrateClientTab.Text = "Registruoti klientą";
             this.RegistrateClientTab.UseVisualStyleBackColor = true;
+            // 
+            // saveUserButton
+            // 
+            this.saveUserButton.Location = new System.Drawing.Point(119, 365);
+            this.saveUserButton.Name = "saveUserButton";
+            this.saveUserButton.Size = new System.Drawing.Size(100, 23);
+            this.saveUserButton.TabIndex = 53;
+            this.saveUserButton.Text = "išsaugoti";
+            this.saveUserButton.UseVisualStyleBackColor = true;
+            this.saveUserButton.Click += new System.EventHandler(this.saveUserButton_Click);
+            // 
+            // adminCheckBox
+            // 
+            this.adminCheckBox.AutoSize = true;
+            this.adminCheckBox.Location = new System.Drawing.Point(119, 316);
+            this.adminCheckBox.Name = "adminCheckBox";
+            this.adminCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.adminCheckBox.TabIndex = 52;
+            this.adminCheckBox.Text = "administratorius";
+            this.adminCheckBox.UseVisualStyleBackColor = true;
             // 
             // passwordTextLabel
             // 
@@ -914,34 +934,14 @@
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
-            // adminCheckBox
-            // 
-            this.adminCheckBox.AutoSize = true;
-            this.adminCheckBox.Location = new System.Drawing.Point(119, 316);
-            this.adminCheckBox.Name = "adminCheckBox";
-            this.adminCheckBox.Size = new System.Drawing.Size(98, 17);
-            this.adminCheckBox.TabIndex = 52;
-            this.adminCheckBox.Text = "administratorius";
-            this.adminCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // saveUserButton
-            // 
-            this.saveUserButton.Location = new System.Drawing.Point(119, 365);
-            this.saveUserButton.Name = "saveUserButton";
-            this.saveUserButton.Size = new System.Drawing.Size(100, 23);
-            this.saveUserButton.TabIndex = 53;
-            this.saveUserButton.Text = "išsaugoti";
-            this.saveUserButton.UseVisualStyleBackColor = true;
-            this.saveUserButton.Click += new System.EventHandler(this.saveUserButton_Click);
-            // 
-            // MainForm
+            // AdminWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.tabControl);
-            this.Name = "MainForm";
+            this.Name = "AdminWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mechanikas";
             this.tabControl.ResumeLayout(false);

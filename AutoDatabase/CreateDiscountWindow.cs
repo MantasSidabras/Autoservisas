@@ -56,29 +56,37 @@ namespace AutoDatabase
                 Image img = new Bitmap(filePathLabel.Text);
                 var imgBytes = ImageToByteArray(img);
 
-                using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                bool isValidSize = checkFileSize(img);
+
+                if (isValidSize)
                 {
-                    fs.Write(imgBytes, 0, imgBytes.Length);
+                    using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    {
+                        fs.Write(imgBytes, 0, imgBytes.Length);
+                    }
+
+                    var discount = new Discount()
+                    {
+                        Title = discountNameTextBox.Text,
+                        Percentage = perc,
+                        ExpirationDate = new DateTime(year, month, day),
+                        Text = discountDescriptionTextBox.Text,
+                        LimitedUse = false,
+                        PictureName = path,
+                        Picture = img,
+                        Code = codeTextBox.Text
+                    };
+
+                    using (var context = new AutoShopEntities())
+                    {
+
+                        if (!checkIfDiscountExists(discount))
+                        {
+                            context.Discounts.Add(discount);
+                            context.SaveChanges();
+                        }
+                    }
                 }
-
-                var discount = new Discount()
-                {
-                    Title = discountNameTextBox.Text,
-                    Percentage = perc,
-                    ExpirationDate = new DateTime(year, month, day),
-                    Text = discountDescriptionTextBox.Text,
-                    LimitedUse = false,
-                    PictureName = path,
-                    Picture = img,
-                    Code = codeTextBox.Text
-                };
-
-                using(var context = new AutoShopEntities())
-                {
-                    context.Discounts.Add(discount);
-                    context.SaveChanges();
-                }
-
             }
             catch (Exception)
             {
@@ -86,6 +94,16 @@ namespace AutoDatabase
             }
 
             this.Hide();
+        }
+
+        private bool checkIfDiscountExists(Discount discount)
+        {
+            return false;
+        }
+
+        private bool checkFileSize(Image img)
+        {
+            return true;
         }
 
         private string GetFileName( string path)

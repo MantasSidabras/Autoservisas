@@ -59,12 +59,12 @@ namespace AutoDatabase
                         if (user.IsAdmin)
                         {
                             // Log in Admin
-                            new MainForm(user).Show();
+                            new AdminWindow(user).Show();
                         }
                         else
                         {
                             // Log in user
-                            new InitialWindow(user).Show();
+                            new ClientWindow(user).Show();
                         }
                         this.Hide();
                     }
